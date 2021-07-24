@@ -20,19 +20,25 @@ namespace RPG.Control
         private void Update()
         {
             if (health.isDead) return;
-            if (InAttackRangeOfPlayer()  && fighter.CanAttack(player))
+            if (InAttackRangeOfPlayer() && fighter.CanAttack(player))
             {
                 fighter.Attack(player);
             }
             else
             {
-              fighter.Cancel();
+                fighter.Cancel();
             }
         }
         private bool InAttackRangeOfPlayer()
         {
             float distance = Vector3.Distance(player.transform.position, transform.position);
             return distance < ChaseDistance;
+        }
+
+        //called by Unity Editpr 
+        private void OnDrawGizmosSelected() {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, ChaseDistance);
         }
     }
 }
