@@ -53,7 +53,8 @@ namespace RPG.Combat
         void Hit()
         {
             Health healthComponent = target.GetComponent<Health>();
-            healthComponent.TakeDamage(weaponDamange);
+            if (healthComponent != null)
+                healthComponent.TakeDamage(weaponDamange);
         }
 
         private bool GetIsInRange()

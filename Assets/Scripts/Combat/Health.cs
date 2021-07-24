@@ -4,15 +4,30 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-
     public class Health : MonoBehaviour
     {
-       [SerializeField] float heath = 100f;
-
+        [SerializeField] float heathPoints = 100f;
+        bool isDead = false;
+        Animator animator;
+        private void Start()
+        {
+            animator = GetComponent<Animator>();
+        }
         public void TakeDamage(float damage)
         {
-            heath = Mathf.Max(heath - damage, 0);
-            print(heath);
+            heathPoints = Mathf.Max(heathPoints - damage, 0);
+            if (heathPoints == 0)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            if (isDead) return;
+
+            isDead = true;
+            animator.SetTrigger("die");
         }
     }
 }
