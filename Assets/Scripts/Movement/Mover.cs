@@ -1,15 +1,21 @@
 using RPG.Core;
 using UnityEngine;
 using UnityEngine.AI;
+using RPG.Saving;
+using System.Collections.Generic;
 
 namespace RPG.Movement
 {
-    public class Mover : MonoBehaviour, IAction
+    public class Mover : MonoBehaviour, IAction, ISaveable
     {
+        [SerializeField] float MaxSpeed = 6f;
+
 
         NavMeshAgent navMeshAgent;
+
         Animator animator;
         Health health;
+
         private void Start()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
@@ -35,16 +41,41 @@ namespace RPG.Movement
         {
             navMeshAgent.isStopped = true;
         }
-        public void StartMoveAction(Vector3 destination)
+        public void StartMoveAction(Vector3 destination, float speedFration)
         {
             GetComponent<ActionScheduler>().StartACtion(this);
-            MoveTo(destination);
+            MoveTo(destination, speedFration);
         }
 
-        public void MoveTo(Vector3 destination)
+        public void MoveTo(Vector3 destination, float speedFration)
         {
             navMeshAgent.destination = destination;
+            navMeshAgent.speed = MaxSpeed * Mathf.Clamp01(speedFration);
             navMeshAgent.isStopped = false;
+        }
+
+        [System.Serializable]
+        struct MoverSaveData
+        {
+            public SerializableVector3 position;
+            public SerializableVector3 rotation;
+        }
+
+        public object CaptureState()
+        {
+            MoverSaveData data = new MoverSaveData();
+            data.position = transform.position;
+            data.rotation = transform.eulerAngles;
+
+            return data;
+        }
+
+        //this gets call before start so we need to look up NavemeshAgent
+        public void RestoreState(object state)
+        {
+            MoverSaveData data = (MoverSaveData)state;
+            GetComponent<NavMeshAgent>().Warp(data.position);
+            transform.eulerAngles = data.rotation;
         }
     }
 }

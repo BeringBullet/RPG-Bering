@@ -26,7 +26,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2138c43ea5658e449bc5a14ec94f4e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChaseDistance: 3
+  chaseDistance: 5
+  suspicionTime: 5
+  patrolPath: {fileID: 0}
+  waypointTolerance: 1
+  waypointDwellTime: 3
+  patrolSpeedFraction: 0.2
 --- !u!114 &4900079395318336656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponRange: 2
-  weaponDamange: 5
+  weaponDamange: 10
   timeBetweenAttacks: 1
 --- !u!114 &7753743927532567939
 MonoBehaviour:
@@ -71,7 +76,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1985992389445516426, guid: 6c27ce8cf231585428a59ed5ea3de892, type: 3}
       propertyPath: heathPoints
-      value: 15
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077949791297157797, guid: 6c27ce8cf231585428a59ed5ea3de892, type: 3}
+      propertyPath: MaxSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2954667731778152993, guid: 6c27ce8cf231585428a59ed5ea3de892, type: 3}
       propertyPath: m_Speed
