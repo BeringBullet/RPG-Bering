@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using RPG.SceneManagement;
 
 namespace RPG.SceneMangement
 {
@@ -11,12 +12,15 @@ namespace RPG.SceneMangement
     {
         enum DestinationIdentifier
         {
-            A,B,C,D,E
+            A, B, C, D, E
         }
 
         [SerializeField] int sceneToLoad = -1;
         [SerializeField] Transform spawnPoint;
         [SerializeField] DestinationIdentifier destination;
+        [SerializeField] float fadeOutTime = 0.5f;
+        [SerializeField] float fadeInTime = 1f;
+        [SerializeField] float fadeWaitTime = 0.5f;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -33,12 +37,14 @@ namespace RPG.SceneMangement
                 Debug.LogError("Scene to load not set.");
                 yield break;
             }
-            
+            Fader fader = FindObjectOfType<Fader>();
+            yield return fader.FadeOut(fadeOutTime);
             DontDestroyOnLoad(gameObject);
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
-
             Portal otherPortal = GetOtherPortal();
             UpdatePlayer(otherPortal);
+            yield return new WaitForSeconds(fadeWaitTime);
+            yield return fader.FadeIn(fadeInTime);
             Destroy(gameObject);
         }
 
