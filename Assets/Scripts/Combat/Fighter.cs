@@ -1,6 +1,7 @@
 using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
+using System;
 
 namespace RPG.Combat
 {
@@ -23,7 +24,11 @@ namespace RPG.Combat
         {
             mover = GetComponent<Mover>();
             animator = GetComponent<Animator>();
+
+            SpawnWeapon();
+
         }
+
 
         private void Update()
         {
@@ -40,7 +45,11 @@ namespace RPG.Combat
                 AttachBehaviour();
             }
         }
-
+        private void SpawnWeapon()
+        {
+            if (weaponPrefab == null || handTransform == null) return;
+            Instantiate(weaponPrefab, handTransform);
+        }
         private void AttachBehaviour()
         {
             transform.LookAt(target.transform);

@@ -41,6 +41,8 @@ MonoBehaviour:
   weaponRange: 2
   weaponDamange: 10
   timeBetweenAttacks: 1
+  weaponPrefab: {fileID: 0}
+  handTransform: {fileID: 0}
 --- !u!114 &6352205416997950258
 MonoBehaviour:
   m_ObjectHideFlags: 0
