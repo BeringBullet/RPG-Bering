@@ -10,6 +10,9 @@ namespace RPG.Combat
         [SerializeField] float weaponRange = 2f;
         [SerializeField] float weaponDamange = 5f;
         [SerializeField] [Range(0, 10)] float timeBetweenAttacks = 1f;
+        [SerializeField] GameObject weaponPrefab;
+        [SerializeField] Transform handTransform;
+
 
         Health target;
         Mover mover;
