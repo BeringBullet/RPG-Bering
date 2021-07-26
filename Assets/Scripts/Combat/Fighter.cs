@@ -13,6 +13,7 @@ namespace RPG.Combat
         [SerializeField] [Range(0, 10)] float timeBetweenAttacks = 1f;
         [SerializeField] GameObject weaponPrefab;
         [SerializeField] Transform handTransform;
+        [SerializeField] AnimatorOverrideController weaponOverrideController;
 
 
         Health target;
@@ -49,7 +50,10 @@ namespace RPG.Combat
         {
             if (weaponPrefab == null || handTransform == null) return;
             Instantiate(weaponPrefab, handTransform);
+
+            animator.runtimeAnimatorController = weaponOverrideController;
         }
+
         private void AttachBehaviour()
         {
             transform.LookAt(target.transform);
