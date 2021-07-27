@@ -923,3 +923,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc4b1dc9bdc424f72a4c086523e1aad3, type: 3}
+--- !u!1001 &9143229392463686883
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5344791046103092715, guid: a015fda328c974ad7aa7ac449ba76a26, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344791046103092715, guid: a015fda328c974ad7aa7ac449ba76a26, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344791046103092715, guid: a015fda328c974ad7aa7ac449ba76a26, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344791046103092715, guid: a015fda328c974ad7aa7ac449ba76a26, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344791046103092715, guid: a015fda328c974ad7aa7ac449ba76a26, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344791046103092715, guid: a015fda328c974ad7aa7ac449ba76a26, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344791046103092715, guid: a015fda328c974ad7aa7ac449ba76a26, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344791046103092715, guid: a015fda328c974ad7aa7ac449ba76a26, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344791046103092715, guid: a015fda328c974ad7aa7ac449ba76a26, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344791046103092715, guid: a015fda328c974ad7aa7ac449ba76a26, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344791046103092715, guid: a015fda328c974ad7aa7ac449ba76a26, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076605500540553157, guid: a015fda328c974ad7aa7ac449ba76a26, type: 3}
+      propertyPath: m_Name
+      value: ArrowProjectile
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a015fda328c974ad7aa7ac449ba76a26, type: 3}
