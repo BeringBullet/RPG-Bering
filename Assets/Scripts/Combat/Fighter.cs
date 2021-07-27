@@ -9,7 +9,8 @@ namespace RPG.Combat
     public class Fighter : MonoBehaviour, IAction
     {
 
-        [SerializeField] Transform handTransform;
+        [SerializeField] Transform rightHandTransform;
+        [SerializeField] Transform leftHandTransform;
         [SerializeField] Weapon defaultWeapon;
 
         Weapon currectWeapon;
@@ -46,6 +47,7 @@ namespace RPG.Combat
         {
             if (weapon == null) return;
             currectWeapon = weapon;
+            Transform handTransform = weapon.IsRightHanded ? rightHandTransform : leftHandTransform;
             weapon.Spawn(handTransform, animator);
         }
 
@@ -73,6 +75,13 @@ namespace RPG.Combat
             if (target == null) return;
             target.TakeDamage(currectWeapon.Damange);
         }
+
+        //this is an animation event
+        void Shoot()
+        {
+            print("Fire Bow");
+        }
+
 
         private bool GetIsInRange()
         {

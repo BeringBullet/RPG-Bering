@@ -9,7 +9,9 @@ namespace RPG.Combat
         [SerializeField] float range = 2f;
         [SerializeField] float damange = 5f;
         [SerializeField] [Range(0, 10)] float timeBetweenAttacks = 1f;
+        [SerializeField] bool isRightHanded = true;
 
+        public bool IsRightHanded { get => isRightHanded; set => isRightHanded = value; }
         public float Range { get => range; set => range = value; }
         public float Damange { get => damange; set => damange = value; }
         public float TimeBetweenAttacks { get => timeBetweenAttacks; set => timeBetweenAttacks = value; }
