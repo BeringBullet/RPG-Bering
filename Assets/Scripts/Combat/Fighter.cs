@@ -47,8 +47,12 @@ namespace RPG.Combat
         {
             if (weapon == null) return;
             currectWeapon = weapon;
-            Transform handTransform = weapon.IsRightHanded ? rightHandTransform : leftHandTransform;
-            weapon.Spawn(handTransform, animator);
+            weapon.Spawn(GetHandTransform(), animator);
+        }
+
+        private Transform GetHandTransform()
+        {
+            return currectWeapon.IsRightHanded ? rightHandTransform : leftHandTransform;
         }
 
         private void AttachBehaviour()
@@ -73,13 +77,20 @@ namespace RPG.Combat
         void Hit()
         {
             if (target == null) return;
-            target.TakeDamage(currectWeapon.Damange);
+            if (currectWeapon.HasProjectile())
+            {
+                currectWeapon.LaunchProjectile(GetHandTransform(), target);
+            }
+            else
+            {
+                target.TakeDamage(currectWeapon.Damange);
+            }
         }
 
         //this is an animation event
         void Shoot()
         {
-            print("Fire Bow");
+            Hit();
         }
 
 

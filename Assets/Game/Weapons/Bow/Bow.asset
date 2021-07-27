@@ -18,3 +18,4 @@ MonoBehaviour:
   damange: 5
   timeBetweenAttacks: 1
   isRightHanded: 0
+  Projectile: {fileID: 3205244516673309815, guid: a015fda328c974ad7aa7ac449ba76a26, type: 3}
