@@ -38,12 +38,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26511f28730f29b4e9e7f703232923c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponRange: 2
-  weaponDamange: 10
-  timeBetweenAttacks: 1
-  weaponPrefab: {fileID: 1351706662127700110, guid: 4ed1b6cfc8ab7c24587a88f098480542, type: 3}
   handTransform: {fileID: 7678910545443227193}
-  weaponOverrideController: {fileID: 22100000, guid: 2927b3c427d52c946b9420decfd1d3bd, type: 2}
+  defaultWeapon: {fileID: 11400000, guid: 850f6341e2caf9747b78c336ea5e243c, type: 2}
 --- !u!114 &6352205416997950258
 MonoBehaviour:
   m_ObjectHideFlags: 0

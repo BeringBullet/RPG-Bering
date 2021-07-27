@@ -8,14 +8,11 @@ namespace RPG.Combat
 
     public class Fighter : MonoBehaviour, IAction
     {
-        [SerializeField] float weaponRange = 2f;
-        [SerializeField] float weaponDamange = 5f;
-        [SerializeField] [Range(0, 10)] float timeBetweenAttacks = 1f;
-        [SerializeField] GameObject weaponPrefab;
+
         [SerializeField] Transform handTransform;
-        [SerializeField] AnimatorOverrideController weaponOverrideController;
+        [SerializeField] Weapon defaultWeapon;
 
-
+        Weapon currectWeapon;
         Health target;
         Mover mover;
         Animator animator;
@@ -26,8 +23,7 @@ namespace RPG.Combat
             mover = GetComponent<Mover>();
             animator = GetComponent<Animator>();
 
-            SpawnWeapon();
-
+            EquipWeapon(defaultWeapon);
         }
 
 
@@ -46,18 +42,17 @@ namespace RPG.Combat
                 AttachBehaviour();
             }
         }
-        private void SpawnWeapon()
+        public void EquipWeapon(Weapon weapon)
         {
-            if (weaponPrefab == null || handTransform == null) return;
-            Instantiate(weaponPrefab, handTransform);
-
-            animator.runtimeAnimatorController = weaponOverrideController;
+            if (weapon == null) return;
+            currectWeapon = weapon;
+            weapon.Spawn(handTransform, animator);
         }
 
         private void AttachBehaviour()
         {
             transform.LookAt(target.transform);
-            if (timeSinceLastAttack > timeBetweenAttacks)
+            if (timeSinceLastAttack > currectWeapon.TimeBetweenAttacks)
             {
                 //This will trigger the Hit() event
                 TriggerAttack();
@@ -76,12 +71,12 @@ namespace RPG.Combat
         void Hit()
         {
             if (target == null) return;
-            target.TakeDamage(weaponDamange);
+            target.TakeDamage(currectWeapon.Damange);
         }
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
+            return Vector3.Distance(transform.position, target.transform.position) < currectWeapon.Range;
         }
 
 
