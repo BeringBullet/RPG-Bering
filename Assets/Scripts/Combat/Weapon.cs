@@ -1,3 +1,4 @@
+using System;
 using RPG.Core;
 using UnityEngine;
 namespace RPG.Combat
@@ -17,11 +18,21 @@ namespace RPG.Combat
         public float Damange { get => damange; set => damange = value; }
         public float TimeBetweenAttacks { get => timeBetweenAttacks; set => timeBetweenAttacks = value; }
 
-        public void Spawn(Transform handTransform, Animator animator)
+        const string weaponName = "Weapon";
+
+        private Transform GetHandTransform(Transform rightHand, Transform leftHand)
         {
+            return IsRightHanded ? rightHand : leftHand;
+        }
+
+        public void Spawn(Transform rightHand, Transform leftHand, Animator animator)
+        {
+            DestroyOldWeapon(rightHand, leftHand);
+            Transform handTransform = GetHandTransform(rightHand, leftHand);
             if (equippedPrefab != null && handTransform != null)
             {
-                Instantiate(equippedPrefab, handTransform);
+                GameObject weapon = Instantiate(equippedPrefab, handTransform);
+                weapon.name = weaponName;
             }
             if (animatorController != null)
             {
@@ -29,13 +40,27 @@ namespace RPG.Combat
             }
         }
 
+        private void DestroyOldWeapon(Transform rightHand, Transform leftHand)
+        {
+            Transform oldWeapon = rightHand.Find(weaponName);
+            if (oldWeapon == null)
+            {
+                oldWeapon = leftHand.Find(weaponName);
+            }
+            if (oldWeapon == null) return;
+            oldWeapon.name = "DESTROYING";
+            Destroy(oldWeapon.gameObject);
+        }
+
         public bool HasProjectile()
         {
             return Projectile != null;
         }
 
-        public void LaunchProjectile(Transform handTransform, Health target)
+        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target)
         {
+            Transform handTransform = GetHandTransform(rightHand, leftHand);
+
             Projectile projectileInstane = Instantiate(Projectile, handTransform.position, Quaternion.identity);
             projectileInstane.SetTarget(target, damange);
         }

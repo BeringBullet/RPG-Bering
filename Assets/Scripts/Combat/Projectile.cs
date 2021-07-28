@@ -9,6 +9,7 @@ namespace RPG.Combat
     {
         [SerializeField] float speed = 1f;
         [SerializeField] float damange = 0f;
+        [SerializeField] bool isHoming = false;
         Health target;
 
         Vector3 AimLocation
@@ -16,16 +17,22 @@ namespace RPG.Combat
             get
             {
                 CapsuleCollider targetCollider = target.GetComponent<CapsuleCollider>();
-                if (targetCollider == null) return target.transform.position;
+                if (targetCollider == null) return 
+                target.transform.position;
                 return target.transform.position + Vector3.up * targetCollider.height / 2;
             }
+        }
+
+        private void Start()
+        {
+            transform.LookAt(AimLocation);
         }
 
         // Update is called once per frame
         void Update()
         {
             if (target == null) return;
-            transform.LookAt(AimLocation);
+            if (isHoming && !target.isDead) transform.LookAt(AimLocation);
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
 
@@ -35,14 +42,13 @@ namespace RPG.Combat
             this.damange += damage;
         }
 
-        private void OnTriggerEnter(Collider other) {
+        private void OnTriggerEnter(Collider other)
+        {
 
-            Health healthTarget = other.GetComponent<Health>();
-            if (healthTarget != null && healthTarget == target)
-            {
-                other.GetComponent<Health>().TakeDamage(damange);
-                Destroy(gameObject);
-            }
+            if (other.GetComponent<Health>() != target) return;
+            if (target.isDead) return;
+            target.TakeDamage(damange);
+            Destroy(gameObject);
         }
     }
 }

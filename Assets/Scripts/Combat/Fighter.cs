@@ -47,13 +47,10 @@ namespace RPG.Combat
         {
             if (weapon == null) return;
             currectWeapon = weapon;
-            weapon.Spawn(GetHandTransform(), animator);
+            weapon.Spawn(rightHandTransform, leftHandTransform, animator);
         }
 
-        private Transform GetHandTransform()
-        {
-            return currectWeapon.IsRightHanded ? rightHandTransform : leftHandTransform;
-        }
+      
 
         private void AttachBehaviour()
         {
@@ -79,7 +76,7 @@ namespace RPG.Combat
             if (target == null) return;
             if (currectWeapon.HasProjectile())
             {
-                currectWeapon.LaunchProjectile(GetHandTransform(), target);
+                currectWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
             }
             else
             {
