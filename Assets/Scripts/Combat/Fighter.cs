@@ -2,11 +2,12 @@ using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
 using System;
+using RPG.Saving;
 
 namespace RPG.Combat
 {
 
-    public class Fighter : MonoBehaviour, IAction
+    public class Fighter : MonoBehaviour, IAction, ISaveable
     {
 
         [SerializeField] Transform rightHandTransform;
@@ -23,8 +24,8 @@ namespace RPG.Combat
         {
             mover = GetComponent<Mover>();
             animator = GetComponent<Animator>();
-
-            EquipWeapon(defaultWeapon);
+            if (currectWeapon == null)
+                EquipWeapon(defaultWeapon);
         }
 
 
@@ -50,7 +51,7 @@ namespace RPG.Combat
             weapon.Spawn(rightHandTransform, leftHandTransform, animator);
         }
 
-      
+
 
         private void AttachBehaviour()
         {
@@ -122,5 +123,16 @@ namespace RPG.Combat
             return targetToTest != null && !targetToTest.isDead;
         }
 
+        public object CaptureState()
+        {
+            return currectWeapon.name;
+        }
+
+        public void RestoreState(object state)
+        {
+            string weaponName = (string)state;
+            Weapon weapon = Resources.Load<Weapon>(weaponName);
+            EquipWeapon(weapon);
+        }
     }
 }
