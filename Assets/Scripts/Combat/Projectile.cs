@@ -10,6 +10,10 @@ namespace RPG.Combat
         [SerializeField] float speed = 1f;
         [SerializeField] float damange = 0f;
         [SerializeField] bool isHoming = false;
+        [SerializeField] GameObject hitEffect;
+        [SerializeField] float maxLifeTime = 10f;
+        [SerializeField] float lifeAfterImpact = 2f;
+        [SerializeField] GameObject[] destroyOnHit;
         Health target;
 
         Vector3 AimLocation
@@ -17,7 +21,7 @@ namespace RPG.Combat
             get
             {
                 CapsuleCollider targetCollider = target.GetComponent<CapsuleCollider>();
-                if (targetCollider == null) return 
+                if (targetCollider == null) return
                 target.transform.position;
                 return target.transform.position + Vector3.up * targetCollider.height / 2;
             }
@@ -40,6 +44,8 @@ namespace RPG.Combat
         {
             this.target = target;
             this.damange += damage;
+
+            Destroy(gameObject, maxLifeTime);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -48,7 +54,19 @@ namespace RPG.Combat
             if (other.GetComponent<Health>() != target) return;
             if (target.isDead) return;
             target.TakeDamage(damange);
-            Destroy(gameObject);
+            speed = 0;
+
+            if (hitEffect != null)
+            {
+                Instantiate(hitEffect, AimLocation, transform.rotation);
+
+            }
+            foreach (GameObject item in destroyOnHit)
+            {
+                Destroy(item);
+            }
+            Destroy(gameObject, lifeAfterImpact);
+
         }
     }
 }
