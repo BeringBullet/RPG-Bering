@@ -15,7 +15,11 @@ namespace RPG.Core
         {
             animator = GetComponent<Animator>();
             actionScheduler = GetComponent<ActionScheduler>();
+
+            heathPoints = GetComponent<BaseStats>().GetHealth();
         }
+
+        
         public void TakeDamage(float damage)
         {
             heathPoints = Mathf.Max(heathPoints - damage, 0);
