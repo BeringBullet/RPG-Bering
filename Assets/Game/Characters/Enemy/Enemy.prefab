@@ -131,6 +131,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6927006748557309510, guid: 6c27ce8cf231585428a59ed5ea3de892, type: 3}
+      propertyPath: progression
+      value: 
+      objectReference: {fileID: 11400000, guid: c39795fc8d338a14197c8713da8295b3, type: 2}
+    - target: {fileID: 6927006748557309510, guid: 6c27ce8cf231585428a59ed5ea3de892, type: 3}
       propertyPath: charctorClass
       value: 1
       objectReference: {fileID: 0}

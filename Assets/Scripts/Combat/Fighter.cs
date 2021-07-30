@@ -1,7 +1,7 @@
 using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
-using System;
+using RPG.Resources;
 using RPG.Saving;
 
 namespace RPG.Combat
@@ -51,7 +51,10 @@ namespace RPG.Combat
             weapon.Spawn(rightHandTransform, leftHandTransform, animator);
         }
 
-
+        public Health GetTarget()
+        {
+            return target;
+        }
 
         private void AttachBehaviour()
         {
@@ -131,7 +134,7 @@ namespace RPG.Combat
         public void RestoreState(object state)
         {
             string weaponName = (string)state;
-            Weapon weapon = Resources.Load<Weapon>(weaponName);
+            Weapon weapon = UnityEngine.Resources.Load<Weapon>(weaponName);
             EquipWeapon(weapon);
         }
     }
