@@ -80,11 +80,11 @@ namespace RPG.Combat
             if (target == null) return;
             if (currectWeapon.HasProjectile())
             {
-                currectWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+                currectWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject);
             }
             else
             {
-                target.TakeDamage(currectWeapon.Damange);
+                target.TakeDamage(gameObject, currectWeapon.Damange);
             }
         }
 
