@@ -18,7 +18,7 @@ namespace RPG.Resources
 
         public void RestoreState(object state)
         {
-            experiencePoints = (float)experiencePoints;
+            experiencePoints = (float)state;
         }
     }
 }
