@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using RPG.Resources;
+using RPG.Combat;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RPG.Combat
+namespace RPG.Resources
 {
     public class EnemyHealthDisplay : MonoBehaviour
     {

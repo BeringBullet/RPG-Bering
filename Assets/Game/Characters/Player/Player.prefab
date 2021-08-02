@@ -159,6 +159,10 @@ PrefabInstance:
       propertyPath: progression
       value: 
       objectReference: {fileID: 11400000, guid: c39795fc8d338a14197c8713da8295b3, type: 2}
+    - target: {fileID: 6927006748557309510, guid: 6c27ce8cf231585428a59ed5ea3de892, type: 3}
+      propertyPath: LevelUPParticleEffect
+      value: 
+      objectReference: {fileID: 1958857322978702948, guid: 3ab197b42fdfd7a45b2aa3a3cbb0dc63, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c27ce8cf231585428a59ed5ea3de892, type: 3}
 --- !u!1 &6159318486476154089 stripped
