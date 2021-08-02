@@ -2,18 +2,23 @@ using UnityEngine;
 
 namespace RPG.Stats
 {
-    [CreateAssetMenu(fileName = "Pregression", menuName = "RPG-Bering/Pregression", order = 0)]
+    [CreateAssetMenu(fileName = "Progression", menuName = "RPG-Bering/Progression", order = 0)]
     public class Progression : ScriptableObject
     {
         [SerializeField] ProgressionCharacterClass[] characterClasses;
 
-        public float GetHealth(CharacterClass characterClass, int level)
+        public float GetStat(Stat stat, CharacterClass characterClass, int level)
         {
             foreach (ProgressionCharacterClass progressionClass in characterClasses)
             {
-                if (progressionClass.characterClass == characterClass)
+                if (progressionClass.characterClass != characterClass) continue;
+
+                foreach (progressionClass item in progressionClass.stats)
                 {
-                    return progressionClass.health[level - 1];
+                    if (item.stats != stat) continue;
+                    if (item.levels.Length < level) continue;
+
+                    return item.levels[level - 1];
                 }
             }
             return 0;
@@ -24,7 +29,15 @@ namespace RPG.Stats
         class ProgressionCharacterClass
         {
             public CharacterClass characterClass;
-            public float[] health;
+            public progressionClass[] stats;
+        }
+
+        [System.Serializable]
+        class progressionClass
+        {
+            public Stat stats;
+            public float[] levels;
+
         }
     }
 }

@@ -41,6 +41,19 @@ MonoBehaviour:
   rightHandTransform: {fileID: 7678910545443227193}
   leftHandTransform: {fileID: 7678910545443169873}
   defaultWeapon: {fileID: 11400000, guid: 850f6341e2caf9747b78c336ea5e243c, type: 2}
+--- !u!114 &6262915837740059298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6159318486476154089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212e935538eadba4ea30ecc910d29fb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experiencePoints: 0
 --- !u!114 &6352205416997950258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,19 +84,6 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &6262915837740059298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6159318486476154089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 212e935538eadba4ea30ecc910d29fb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  experiencePoints: 0
 --- !u!1001 &4637045131522451343
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using RPG.Resources;
 using UnityEngine;
 namespace RPG.Combat
 {
-    [CreateAssetMenu(fileName = "Weapon", menuName = "Weapons/Make New Weapon   ", order = 0)]
+    [CreateAssetMenu(fileName = "Weapon", menuName = "RPG-Bering/Weapons/Make New Weapon   ", order = 0)]
     public class Weapon : ScriptableObject
     {
         [SerializeField] GameObject equippedPrefab;
