@@ -5,6 +5,7 @@ using RPG.Resources;
 using RPG.Saving;
 using RPG.Stats;
 using System.Collections.Generic;
+using GameDevTV.Utils;
 
 namespace RPG.Combat
 {
@@ -16,18 +17,21 @@ namespace RPG.Combat
         [SerializeField] Transform leftHandTransform;
         [SerializeField] Weapon defaultWeapon;
 
-        Weapon currectWeapon;
+        LazyValue<Weapon> currectWeapon;
         Health target;
         Mover mover;
         Animator animator;
         float timeSinceLastAttack = Mathf.Infinity;
 
-        private void Start()
+        private void Awake()
         {
             mover = GetComponent<Mover>();
             animator = GetComponent<Animator>();
-            if (currectWeapon == null)
-                EquipWeapon(defaultWeapon);
+            currectWeapon = new LazyValue<Weapon>(() => { AttachWeapon(defaultWeapon); return defaultWeapon; });
+        }
+        private void Start()
+        {
+            currectWeapon.ForceInit();
         }
 
 
@@ -48,11 +52,14 @@ namespace RPG.Combat
         }
         public void EquipWeapon(Weapon weapon)
         {
-            if (weapon == null) return;
-            currectWeapon = weapon;
-            weapon.Spawn(rightHandTransform, leftHandTransform, animator);
+            currectWeapon.value = weapon;
+            AttachWeapon(weapon);
         }
+        private void AttachWeapon(Weapon weapon)
+        {
+            weapon.Spawn(rightHandTransform, leftHandTransform, animator);
 
+        }
         public Health GetTarget()
         {
             return target;
@@ -61,7 +68,7 @@ namespace RPG.Combat
         private void AttachBehaviour()
         {
             transform.LookAt(target.transform);
-            if (timeSinceLastAttack > currectWeapon.TimeBetweenAttacks)
+            if (timeSinceLastAttack > currectWeapon.value.TimeBetweenAttacks)
             {
                 //This will trigger the Hit() event
                 TriggerAttack();
@@ -82,9 +89,9 @@ namespace RPG.Combat
             if (target == null) return;
 
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
-            if (currectWeapon.HasProjectile())
+            if (currectWeapon.value.HasProjectile())
             {
-                currectWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject, damage);
+                currectWeapon.value.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject, damage);
             }
             else
             {
@@ -101,7 +108,7 @@ namespace RPG.Combat
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, target.transform.position) < currectWeapon.Range;
+            return Vector3.Distance(transform.position, target.transform.position) < currectWeapon.value.Range;
         }
 
         public void Cancel()
@@ -122,7 +129,16 @@ namespace RPG.Combat
         {
             if (stat == Stat.Damage)
             {
-                yield return currectWeapon.Damange;
+                yield return currectWeapon.value.Damange;
+            }
+        }
+
+
+        public IEnumerable<float> GetPercentageModifier(Stat stat)
+        {
+            if (stat == Stat.Damage)
+            {
+                yield return currectWeapon.value.PerventageBonus;
             }
         }
 
@@ -141,7 +157,7 @@ namespace RPG.Combat
 
         public object CaptureState()
         {
-            return currectWeapon.name;
+            return currectWeapon.value.name;
         }
 
         public void RestoreState(object state)

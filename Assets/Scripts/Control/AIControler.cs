@@ -6,6 +6,8 @@ using RPG.Core;
 using RPG.Resources;
 using RPG.Movement;
 using UnityEngine;
+using GameDevTV.Utils;
+
 namespace RPG.Control
 {
     public class AIControler : MonoBehaviour
@@ -15,19 +17,20 @@ namespace RPG.Control
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerance = 1f;
         [SerializeField] float waypointDwellTime = 3f;
-        [Range(0,1)] [SerializeField] float patrolSpeedFraction = 0.2f;
+        [Range(0, 1)] [SerializeField] float patrolSpeedFraction = 0.2f;
 
         GameObject player;
         Fighter fighter;
         Health health;
         Mover mover;
         ActionScheduler actionScheduler;
-        Vector3 guardPosition;
+        LazyValue<Vector3> guardPosition;
         Quaternion guardDefaultRotation;
         float timeSinceLastSawPlayer = Mathf.Infinity;
         float timeSinceArrivedAtWaypoint = Mathf.Infinity;
         int currentWaypointIndex = 0;
-        private void Start()
+
+        private void Awake()
         {
             player = GameObject.FindWithTag("Player");
             fighter = GetComponent<Fighter>();
@@ -35,7 +38,11 @@ namespace RPG.Control
             mover = GetComponent<Mover>();
             actionScheduler = GetComponent<ActionScheduler>();
 
-            guardPosition = transform.position;
+            guardPosition = new LazyValue<Vector3>(() => {return transform.position;});
+        }
+        private void Start()
+        {
+            guardPosition.ForceInit();
             guardDefaultRotation = transform.rotation;
         }
         private void Update()
@@ -64,7 +71,7 @@ namespace RPG.Control
 
         private void PatrolBehaviour()
         {
-            Vector3 nextPosition = guardPosition;
+            Vector3 nextPosition = guardPosition.value;
             if (patrolPath != null)
             {
                 if (AtWaypoint())

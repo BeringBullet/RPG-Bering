@@ -9,12 +9,15 @@ namespace RPG.Combat
         [SerializeField] AnimatorOverrideController animatorController;
         [SerializeField] float range = 2f;
         [SerializeField] float damange = 5f;
+        [SerializeField] float perventageBonus = 0f;
         [SerializeField] [Range(0, 10)] float timeBetweenAttacks = 1f;
         [SerializeField] bool isRightHanded = true;
         [SerializeField] Projectile Projectile;
         public bool IsRightHanded { get => isRightHanded; set => isRightHanded = value; }
         public float Range { get => range; set => range = value; }
         public float Damange { get => damange; set => damange = value; }
+        public float PerventageBonus { get => perventageBonus; set => perventageBonus = value; }
+
         public float TimeBetweenAttacks { get => timeBetweenAttacks; set => timeBetweenAttacks = value; }
 
         const string weaponName = "Weapon";
@@ -70,6 +73,6 @@ namespace RPG.Combat
             projectileInstane.SetTarget(target, instagator, calculatedDamage);
         }
 
-        
+
     }
 }
