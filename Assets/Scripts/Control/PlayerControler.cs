@@ -112,10 +112,11 @@ namespace RPG.Control
 
             if (!hasCastToNavMesh) return false;
             target = navMeshHit.position;
+            
             NavMeshPath path = new NavMeshPath();
             bool hasPath = NavMesh.CalculatePath(transform.position, target, NavMesh.AllAreas, path);
             if (!hasPath) return false;
-            if (path.status == NavMeshPathStatus.PathComplete) return false;
+            if (path.status != NavMeshPathStatus.PathComplete) return false;
             if (GerPathLength(path) > maxNavPathLength) return false;
             return true;
         }
