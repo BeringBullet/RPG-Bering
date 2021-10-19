@@ -1,5 +1,5 @@
 using RPG.Core;
-using RPG.Resources;
+using RPG.Attribute;
 using UnityEngine;
 using UnityEngine.AI;
 using RPG.Saving;

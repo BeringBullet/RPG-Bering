@@ -13,8 +13,11 @@ GameObject:
   - component: {fileID: 8799342630260824943}
   - component: {fileID: 1614617139820036820}
   - component: {fileID: 9073862335611340745}
+  - component: {fileID: 4140151733237717435}
+  - component: {fileID: 5517486499122327852}
+  - component: {fileID: 3462206462213528930}
   m_Layer: 5
-  m_Name: Damage Text
+  m_Name: Inner Damage Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +32,7 @@ RectTransform:
   m_GameObject: {fileID: 3041450626662768872}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_Children:
   - {fileID: 8807917765989336395}
   m_Father: {fileID: 1016129714283084809}
@@ -37,8 +40,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.4166667}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0.1}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &673652061043209177
 Canvas:
@@ -113,6 +116,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fcf7aeae710c49aab6d094994740e28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &4140151733237717435
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3041450626662768872}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: ea39baf7383c27046b69ab05e277b3f5, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: ea39baf7383c27046b69ab05e277b3f5, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!225 &5517486499122327852
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3041450626662768872}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &3462206462213528930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3041450626662768872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044dd298be998df40a6f1a230d428ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetToDestroy: {fileID: 4914832499671636311}
 --- !u!1 &4914832499671636311
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,6 +166,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1016129714283084809}
+  - component: {fileID: 6797163105148173199}
   m_Layer: 0
   m_Name: Damage Text
   m_TagString: Untagged
@@ -144,6 +189,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6797163105148173199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4914832499671636311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc24e2c05f7a29e41868c98bf0089750, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageText: {fileID: 7631095718596331189}
 --- !u!1 &5942745117938305547
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,10 +234,10 @@ RectTransform:
   m_Father: {fileID: 7758910816825698404}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0.099998474}
+  m_SizeDelta: {x: 0, y: -0.27001128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2319456760405257661
 CanvasRenderer:
@@ -211,12 +269,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 90
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 1
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
