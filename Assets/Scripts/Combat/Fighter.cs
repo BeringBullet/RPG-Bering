@@ -22,7 +22,8 @@ namespace RPG.Combat
         WeaponConfig currentWeaponConfig;
         LazyValue<Weapon> currentWeapon;
 
-        private void Awake() {
+        private void Awake()
+        {
             currentWeaponConfig = defaultWeapon;
             currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
         }
@@ -32,7 +33,7 @@ namespace RPG.Combat
             return AttachWeapon(defaultWeapon);
         }
 
-        private void Start() 
+        private void Start()
         {
             currentWeapon.ForceInit();
         }
@@ -44,7 +45,7 @@ namespace RPG.Combat
             if (target == null) return;
             if (target.IsDead()) return;
 
-            if (!GetIsInRange())
+            if (!GetIsInRange(target.transform))
             {
                 GetComponent<Mover>().MoveTo(target.transform.position, 1f);
             }
@@ -70,7 +71,7 @@ namespace RPG.Combat
         public Health GetTarget()
         {
             return target;
-        } 
+        }
 
         private void AttackBehaviour()
         {
@@ -92,7 +93,7 @@ namespace RPG.Combat
         // Animation Event
         void Hit()
         {
-            if(target == null) { return; }
+            if (target == null) { return; }
 
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
 
@@ -116,15 +117,19 @@ namespace RPG.Combat
             Hit();
         }
 
-        private bool GetIsInRange()
+        private bool GetIsInRange(Transform targetTransform)
         {
-            return Vector3.Distance(transform.position, target.transform.position) < currentWeaponConfig.GetRange();
+            return Vector3.Distance(transform.position, targetTransform.position) < currentWeaponConfig.GetRange();
         }
 
         public bool CanAttack(GameObject combatTarget)
         {
             if (combatTarget == null) { return false; }
-            if (!GetComponent<Mover>().CanMoveTo(combatTarget.transform.position)) { return false; }
+            if (!GetComponent<Mover>().CanMoveTo(combatTarget.transform.position) &&
+                !GetIsInRange(combatTarget.transform))
+            {
+                return false;
+            }
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead();
         }
