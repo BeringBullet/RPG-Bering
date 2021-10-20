@@ -1,8 +1,8 @@
-namespace RPG.Control
+﻿namespace RPG.Control
 {
     public interface IRaycastable
     {
         CursorType GetCursorType();
-        bool HangleRaycast(PlayerController callingControler);
+        bool HandleRaycast(PlayerController callingController);
     }
 }

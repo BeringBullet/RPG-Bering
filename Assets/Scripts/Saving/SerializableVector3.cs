@@ -14,10 +14,9 @@ namespace RPG.Saving
             z = vector.z;
         }
 
-        public static implicit operator Vector3(SerializableVector3 s)
-            => new Vector3(s.x, s.y, s.z);
-
-        public static implicit operator SerializableVector3(Vector3 v)
-            => new SerializableVector3(v);
+        public Vector3 ToVector()
+        {
+            return new Vector3(x, y, z);
+        }
     }
 }

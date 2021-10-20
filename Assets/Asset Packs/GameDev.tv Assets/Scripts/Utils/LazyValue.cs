@@ -23,7 +23,6 @@
             _initializer = initializer;
         }
 
-
         /// <summary>
         /// Get or set the contents of this container.
         /// </summary>
