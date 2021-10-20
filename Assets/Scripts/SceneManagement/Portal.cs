@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 using RPG.SceneManagement;
+using RPG.Control;
 
 namespace RPG.SceneManagement
 {
@@ -43,14 +44,23 @@ namespace RPG.SceneManagement
 
             yield return fader.FadeOut(fadeOutTime);
             SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
+            PlayerControler playerController = GameObject.FindWithTag("Player").GetComponent<PlayerControler>();
+            playerController.enabled = false;
+
             savingWrapper.Save();
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
+
+            playerController = GameObject.FindWithTag("Player").GetComponent<PlayerControler>();
+            playerController.enabled = false;
+
             savingWrapper.Load();
             Portal otherPortal = GetOtherPortal();
             UpdatePlayer(otherPortal);
             savingWrapper.Save();
             yield return new WaitForSeconds(fadeWaitTime);
-            yield return fader.FadeIn(fadeInTime);
+            fader.FadeIn(fadeInTime);
+            playerController.enabled = true;
+
             Destroy(gameObject);
         }
 

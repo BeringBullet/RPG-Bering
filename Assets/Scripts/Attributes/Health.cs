@@ -46,7 +46,6 @@ namespace RPG.Attribute
         }
         public void TakeDamage(GameObject instigator, float damage)
         {
-            print(gameObject.name + " took damage: " + damage);
             healthPoints.value = Mathf.Max(healthPoints.value - damage, 0);
 
             if (healthPoints.value == 0)
@@ -70,7 +69,12 @@ namespace RPG.Attribute
 
         public float GetPercentage()
         {
-            return 100 * (GetHealthPoints() / GetMaxHealthPoints());
+            return 100 * GetFraction();
+        }
+
+        public float GetFraction()
+        {
+            return GetHealthPoints() / GetMaxHealthPoints();
         }
         public float GetHealthPoints()
         {
@@ -88,7 +92,6 @@ namespace RPG.Attribute
             animator.SetTrigger("die");
             actionScheduler.CancelCurrentAction();
         }
-
 
         private void RegenerateHealth()
         {
