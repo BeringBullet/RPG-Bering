@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d915475016f2ab54796510a87a4a55d9, type: 3}
   m_Name: Fire Bow
   m_EditorClassIdentifier: 
-  equippedPrefab: {fileID: 4781619766233174558, guid: c4767ab598497461cabed97dc608a678, type: 3}
+  equippedPrefab: {fileID: -6194443021318102089, guid: c4767ab598497461cabed97dc608a678, type: 3}
   animatorController: {fileID: 22100000, guid: bdbcbca1d608a4960b4160c37c173147, type: 2}
   range: 20
   damange: 5
+  perventageBonus: 0
   timeBetweenAttacks: 1.2
   isRightHanded: 0
   Projectile: {fileID: 5845900736108916769, guid: 6a7dba76953b55848a5fb1998d1143d6, type: 3}

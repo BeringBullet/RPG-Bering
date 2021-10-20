@@ -12,7 +12,7 @@ namespace RPG.Combat
             return CursorType.Combat;
         }
 
-        public bool HangleRaycast(PlayerControler callingControler)
+        public bool HangleRaycast(PlayerController callingControler)
         {
             if (!callingControler.GetComponent<Fighter>().CanAttack(gameObject)) return false;
 

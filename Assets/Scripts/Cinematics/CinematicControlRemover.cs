@@ -30,13 +30,13 @@ namespace RPG.Cinematics
         {
             if (player == null) return;
             player.GetComponent<ActionScheduler>().CancelCurrentAction();
-            player.GetComponent<PlayerControler>().enabled = false;
+            player.GetComponent<PlayerController>().enabled = false;
         }
 
         void EnableControl(PlayableDirector pd)
         {
             if (player == null) return;
-            player.GetComponent<PlayerControler>().enabled = true;
+            player.GetComponent<PlayerController>().enabled = true;
         }
     }
 }

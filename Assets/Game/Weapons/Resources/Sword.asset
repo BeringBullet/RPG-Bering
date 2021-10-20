@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d915475016f2ab54796510a87a4a55d9, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  equippedPrefab: {fileID: 1351706662127700110, guid: 4ed1b6cfc8ab7c24587a88f098480542, type: 3}
+  equippedPrefab: {fileID: 8551762497526860544, guid: 4ed1b6cfc8ab7c24587a88f098480542, type: 3}
   animatorController: {fileID: 22100000, guid: 2927b3c427d52c946b9420decfd1d3bd, type: 2}
   range: 2
   damange: 10
+  perventageBonus: 0
   timeBetweenAttacks: 1
+  isRightHanded: 1
+  Projectile: {fileID: 0}

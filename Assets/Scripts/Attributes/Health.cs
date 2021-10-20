@@ -14,6 +14,7 @@ namespace RPG.Attribute
     {
         [SerializeField] float regenerationPercentage = 70f;
         [SerializeField] TakeDamageEvent takeDamage;
+        [SerializeField] UnityEvent onDie;
 
         [Serializable]
         public class TakeDamageEvent : UnityEvent<float> { }
@@ -29,6 +30,7 @@ namespace RPG.Attribute
 
             healthPoints = new LazyValue<float>(() => { return GetComponent<BaseStats>().GetStat(Stat.Health); });
         }
+
 
         private void Start()
         {
@@ -50,6 +52,7 @@ namespace RPG.Attribute
 
             if (healthPoints.value == 0)
             {
+                onDie.Invoke();
                 Die();
                 AwardExperience(instigator);
             }
@@ -57,6 +60,11 @@ namespace RPG.Attribute
             {
                 takeDamage.Invoke(damage);
             }
+        }
+
+        public void Heal(float healthToRestore)
+        {
+            healthPoints.value = Mathf.Min(healthPoints.value + healthToRestore, GetMaxHealthPoints());
         }
 
         private void AwardExperience(GameObject instigator)

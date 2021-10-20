@@ -44,13 +44,13 @@ namespace RPG.SceneManagement
 
             yield return fader.FadeOut(fadeOutTime);
             SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
-            PlayerControler playerController = GameObject.FindWithTag("Player").GetComponent<PlayerControler>();
+            PlayerController playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
             playerController.enabled = false;
 
             savingWrapper.Save();
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
 
-            playerController = GameObject.FindWithTag("Player").GetComponent<PlayerControler>();
+            playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
             playerController.enabled = false;
 
             savingWrapper.Load();

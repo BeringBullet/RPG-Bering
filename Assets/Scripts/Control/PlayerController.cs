@@ -9,7 +9,7 @@ using UnityEngine.AI;
 
 namespace RPG.Control
 {
-    public class PlayerControler : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         Health health;
 
