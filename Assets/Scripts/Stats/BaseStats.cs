@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using GameDevTV.Utils;
+using Bering.Utils;
 using UnityEngine;
 
 namespace RPG.Stats
