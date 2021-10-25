@@ -8,16 +8,19 @@ namespace RPG.Dialogue
 {
     public class PlayerConversant : MonoBehaviour
     {
+        [SerializeField] string playerName;
         Dialogue currentDialogue;
-        DialogueNode currentNode = null;
+        DialogueNode currentNode;
+        AIConversant currentConversant;
         bool isChoosing = false;
 
         public event Action onConversationUpdated;
 
-        public void StartDialogue(Dialogue newDialogue)
+        public void StartDialogue(AIConversant newConversant, Dialogue newDialogue)
         {
             currentDialogue = newDialogue;
             currentNode = currentDialogue.GetRootNode();
+            currentConversant = newConversant;
             TriggerEnterAction();
             onConversationUpdated();
         }
@@ -28,6 +31,7 @@ namespace RPG.Dialogue
             TriggerExitAction();
             currentNode = null;
             isChoosing = false;
+            currentConversant = null;
             onConversationUpdated();
         }
         public bool IsActive()
@@ -48,6 +52,18 @@ namespace RPG.Dialogue
             }
 
             return currentNode.GetText();
+        }
+
+        public string getCurrentConversantName()
+        {
+            if (isChoosing)
+            {
+                return playerName;
+            }
+            else
+            {
+                return currentConversant.getName();
+            }
         }
 
         public IEnumerable<DialogueNode> GetChoices()
@@ -89,15 +105,32 @@ namespace RPG.Dialogue
 
         private void TriggerEnterAction()
         {
-            if (currentNode != null && currentNode.GetOnEnterAction() != "")
+            if (currentNode != null)
             {
+                TriggerAction(currentNode.GetOnEnterAction());
             }
         }
 
         private void TriggerExitAction()
         {
-            if (currentNode != null && currentNode.GetOnExitAction() != "")
+
+            if (currentNode != null)
             {
+                Debug.Log($"TriggerExitAction");
+
+                TriggerAction(currentNode.GetOnExitAction());
+            }
+        }
+
+        private void TriggerAction(string action)
+        {
+            Debug.Log($"fire trigger {action}");
+
+            if (action == "") return;
+
+            foreach (DialogueTrigger trigger in currentConversant.GetComponents<DialogueTrigger>())
+            {
+                trigger.Trigger(action);
             }
         }
     }

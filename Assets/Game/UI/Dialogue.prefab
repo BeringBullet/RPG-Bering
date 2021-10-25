@@ -475,6 +475,7 @@ MonoBehaviour:
   choiceRoot: {fileID: 2736563987796547844}
   choicePrefab: {fileID: 7494753565848296290, guid: 75fb9bc575dae104fbad71a9c58882b0, type: 3}
   quitButton: {fileID: 394302698931262520}
+  conversantName: {fileID: 4827314284866043828}
 --- !u!1 &4436718402069290331
 GameObject:
   m_ObjectHideFlags: 0
