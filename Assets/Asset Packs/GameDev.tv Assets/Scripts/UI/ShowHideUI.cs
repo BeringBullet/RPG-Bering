@@ -22,6 +22,10 @@ namespace Bering.UI
             {
                 uiContainer.SetActive(!uiContainer.activeSelf);
             }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                uiContainer.SetActive(false);
+            }
         }
     }
 }

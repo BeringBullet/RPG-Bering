@@ -12,7 +12,6 @@ namespace RPG.Inventories
         [Tooltip("How far can the pickups be scattered from the dropper.")]
         [SerializeField] float scatterDistance = 1;
         [SerializeField] DropLibrary dropLibrary;
-        [SerializeField] int numberOfDrops = 2;
         const int ATTEMPTS = 30;
 
         public void RandomDrop()
