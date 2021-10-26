@@ -20,12 +20,17 @@ namespace Bering.UI
         {
             if (Input.GetKeyDown(toggleKey))
             {
-                uiContainer.SetActive(!uiContainer.activeSelf);
+                Toggle();
             }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 uiContainer.SetActive(false);
             }
+        }
+
+        public void Toggle()
+        {
+            uiContainer.SetActive(!uiContainer.activeSelf);
         }
     }
 }
