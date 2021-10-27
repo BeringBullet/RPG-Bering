@@ -24,17 +24,16 @@ namespace RPG.Control
         [SerializeField] float maxNavMeshProjectionDistance = 1f;
         [SerializeField] float raycastRadius = 1f;
 
-        bool isDragging = false;
+        bool isDraggingUI = false;
 
-        private void Awake()
-        {
+        private void Awake() {
             health = GetComponent<Health>();
         }
 
         private void Update()
         {
             if (InteractWithUI()) return;
-            if (health.IsDead())
+            if (health.IsDead()) 
             {
                 SetCursor(CursorType.None);
                 return;
@@ -48,17 +47,20 @@ namespace RPG.Control
 
         private bool InteractWithUI()
         {
-            if (Input.GetMouseButtonUp(0)) isDragging = false;
+            if (Input.GetMouseButtonUp(0))
+            {
+                isDraggingUI = false;
+            }
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    isDragging = true;
+                    isDraggingUI = true;
                 }
                 SetCursor(CursorType.UI);
                 return true;
             }
-            if (isDragging)
+            if (isDraggingUI)
             {
                 return true;
             }

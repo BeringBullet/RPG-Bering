@@ -1,12 +1,12 @@
-using System.Collections;
+
 using System.Collections.Generic;
-using Bering.Inventories;
+using GameDevTV.Inventories;
 using UnityEngine;
 
 namespace RPG.Inventories
 {
-    [CreateAssetMenu(menuName = "RPG/Inventory/Drop Library")]
-     public class DropLibrary : ScriptableObject
+    [CreateAssetMenu(menuName = ("RPG/Inventory/Drop Library"))]
+    public class DropLibrary : ScriptableObject
     {
         [SerializeField]
         DropConfig[] potentialDrops;

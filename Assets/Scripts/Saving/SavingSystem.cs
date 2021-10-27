@@ -7,7 +7,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Bering.Saving
+namespace GameDevTV.Saving
 {
     /// <summary>
     /// This component provides the interface to the saving system. It provides
@@ -52,12 +52,11 @@ namespace Bering.Saving
             File.Delete(GetPathFromSaveFile(saveFile));
         }
 
-
         public void Load(string saveFile)
         {
             RestoreState(LoadFile(saveFile));
         }
-        
+
         // PRIVATE
 
         private Dictionary<string, object> LoadFile(string saveFile)

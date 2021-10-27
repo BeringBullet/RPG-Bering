@@ -1,7 +1,7 @@
 using System;
-using Bering.Utils;
+using GameDevTV.Utils;
 using RPG.Core;
-using Bering.Saving;
+using GameDevTV.Saving;
 using RPG.Stats;
 using UnityEngine;
 using UnityEngine.Events;

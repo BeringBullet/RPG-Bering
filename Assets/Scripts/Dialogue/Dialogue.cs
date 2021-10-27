@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,8 +16,7 @@ namespace RPG.Dialogue
 
         Dictionary<string, DialogueNode> nodeLookup = new Dictionary<string, DialogueNode>();
 
-        private void OnValidate()
-        {
+        private void OnValidate() {
             nodeLookup.Clear();
             foreach (DialogueNode node in GetAllNodes())
             {
@@ -94,7 +93,7 @@ namespace RPG.Dialogue
             if (parent != null)
             {
                 parent.AddChild(newNode.name);
-                newNode.SetPlayerIsSpeaking(!parent.IsPlayerSpeaking());
+                newNode.SetPlayerSpeaking(!parent.IsPlayerSpeaking());
                 newNode.SetPosition(parent.GetRect().position + newNodeOffset);
             }
 

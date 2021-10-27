@@ -1,36 +1,40 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using Bering.Inventories;
+using GameDevTV.Inventories;
 using RPG.Stats;
+using UnityEngine;
 
-public class StatsEquipment : Equipment, IModifierProvider
+namespace RPG.Inventories
 {
-    public IEnumerable<float> GetAdditiveModifiers(Stat stat)
+    public class StatsEquipment : Equipment, IModifierProvider
     {
-        foreach (var slot in GetAllPopulatedSlots())
+        IEnumerable<float> IModifierProvider.GetAdditiveModifiers(Stat stat)
         {
-            var item = GetItemInSlot(slot) as IModifierProvider;
-            if (item == null) continue;
-
-            foreach (float Modifier in item.GetAdditiveModifiers(stat))
+            foreach (var slot in GetAllPopulatedSlots())
             {
-                yield return Modifier;
+                var item = GetItemInSlot(slot) as IModifierProvider;
+                if (item == null) continue;
+
+                foreach (float modifier in item.GetAdditiveModifiers(stat))
+                {
+                    yield return modifier;
+                }
             }
         }
-    }
 
-    public IEnumerable<float> GetPercentageModifiers(Stat stat)
-    {
-        foreach (var slot in GetAllPopulatedSlots())
+        IEnumerable<float> IModifierProvider.GetPercentageModifiers(Stat stat)
         {
-            var item = GetItemInSlot(slot) as IModifierProvider;
-            if (item == null) continue;
-
-            foreach (float Modifier in item.GetPercentageModifiers(stat))
+            foreach (var slot in GetAllPopulatedSlots())
             {
-                yield return Modifier;
+                var item = GetItemInSlot(slot) as IModifierProvider;
+                if (item == null) continue;
+
+                foreach (float modifier in item.GetPercentageModifiers(stat))
+                {
+                    yield return modifier;
+                }
             }
         }
+
     }
 }

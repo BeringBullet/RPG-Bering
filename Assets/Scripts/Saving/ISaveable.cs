@@ -1,4 +1,4 @@
-namespace Bering.Saving
+namespace GameDevTV.Saving
 {
     /// <summary>
     /// Implement in any component that has state to save/restore.

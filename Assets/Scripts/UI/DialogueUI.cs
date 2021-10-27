@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Dialogue;
@@ -25,6 +25,7 @@ namespace RPG.UI
             playerConversant.onConversationUpdated += UpdateUI;
             nextButton.onClick.AddListener(() => playerConversant.Next());
             quitButton.onClick.AddListener(() => playerConversant.Quit());
+
             UpdateUI();
         }
 
@@ -35,7 +36,7 @@ namespace RPG.UI
             {
                 return;
             }
-            conversantName.text = playerConversant.getCurrentConversantName();
+            conversantName.text = playerConversant.GetCurrentConversantName();
             AIResponse.SetActive(!playerConversant.IsChoosing());
             choiceRoot.gameObject.SetActive(playerConversant.IsChoosing());
             if (playerConversant.IsChoosing())
@@ -51,14 +52,17 @@ namespace RPG.UI
 
         private void BuildChoiceList()
         {
-            choiceRoot.DetachChildren();
+            foreach (Transform item in choiceRoot)
+            {
+                Destroy(item.gameObject);
+            }
             foreach (DialogueNode choice in playerConversant.GetChoices())
             {
                 GameObject choiceInstance = Instantiate(choicePrefab, choiceRoot);
                 var textComp = choiceInstance.GetComponentInChildren<TextMeshProUGUI>();
                 textComp.text = choice.GetText();
                 Button button = choiceInstance.GetComponentInChildren<Button>();
-                button.onClick.AddListener(() =>
+                button.onClick.AddListener(() => 
                 {
                     playerConversant.SelectChoice(choice);
                 });

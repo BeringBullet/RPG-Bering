@@ -1,6 +1,6 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using Bering.Inventories;
+using GameDevTV.Inventories;
 using UnityEngine;
 
 namespace RPG.Control

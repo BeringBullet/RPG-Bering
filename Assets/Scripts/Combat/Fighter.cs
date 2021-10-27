@@ -1,13 +1,13 @@
 using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
-using Bering.Saving;
+using GameDevTV.Saving;
 using RPG.Attributes;
 using RPG.Stats;
 using System.Collections.Generic;
-using Bering.Utils;
-using Bering.Inventories;
+using GameDevTV.Utils;
 using System;
+using GameDevTV.Inventories;
 
 namespace RPG.Combat
 {
@@ -24,8 +24,7 @@ namespace RPG.Combat
         WeaponConfig currentWeaponConfig;
         LazyValue<Weapon> currentWeapon;
 
-        private void Awake()
-        {
+        private void Awake() {
             currentWeaponConfig = defaultWeapon;
             currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
             equipment = GetComponent<Equipment>();
@@ -35,26 +34,12 @@ namespace RPG.Combat
             }
         }
 
-        private void UpdateWeapon()
-        {
-            var weapon = equipment.GetItemInSlot(EquipLocation.Weapon) as WeaponConfig;
-            if (weapon == null)
-            {
-                EquipWeapon(defaultWeapon);
-            }
-            else
-            {
-                EquipWeapon(weapon);
-            }
-       
-        }
-
         private Weapon SetupDefaultWeapon()
         {
             return AttachWeapon(defaultWeapon);
         }
 
-        private void Start()
+        private void Start() 
         {
             currentWeapon.ForceInit();
         }
@@ -83,6 +68,19 @@ namespace RPG.Combat
             currentWeapon.value = AttachWeapon(weapon);
         }
 
+        private void UpdateWeapon()
+        {
+            var weapon = equipment.GetItemInSlot(EquipLocation.Weapon) as WeaponConfig;
+            if (weapon == null)
+            {
+                EquipWeapon(defaultWeapon);
+            }
+            else
+            {
+                EquipWeapon(weapon);
+            }
+        }
+
         private Weapon AttachWeapon(WeaponConfig weapon)
         {
             Animator animator = GetComponent<Animator>();
@@ -92,7 +90,7 @@ namespace RPG.Combat
         public Health GetTarget()
         {
             return target;
-        }
+        } 
 
         private void AttackBehaviour()
         {
@@ -114,7 +112,7 @@ namespace RPG.Combat
         // Animation Event
         void Hit()
         {
-            if (target == null) { return; }
+            if(target == null) { return; }
 
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
 
@@ -147,9 +145,9 @@ namespace RPG.Combat
         {
             if (combatTarget == null) { return false; }
             if (!GetComponent<Mover>().CanMoveTo(combatTarget.transform.position) &&
-                !GetIsInRange(combatTarget.transform))
+                !GetIsInRange(combatTarget.transform)) 
             {
-                return false;
+                return false; 
             }
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead();

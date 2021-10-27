@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using RPG.Attributes;
-using Bering.Inventories;
+using GameDevTV.Inventories;
 using RPG.Stats;
 using System.Collections.Generic;
 
@@ -35,7 +35,7 @@ namespace RPG.Combat
             var overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
             if (animatorOverride != null)
             {
-                animator.runtimeAnimatorController = animatorOverride;
+                animator.runtimeAnimatorController = animatorOverride; 
             }
             else if (overrideController != null)
             {

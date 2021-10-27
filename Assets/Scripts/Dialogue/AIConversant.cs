@@ -1,14 +1,14 @@
-using RPG.Control;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using RPG.Control;
 using UnityEngine;
 
 namespace RPG.Dialogue
 {
     public class AIConversant : MonoBehaviour, IRaycastable
     {
+        [SerializeField] Dialogue dialogue = null;
         [SerializeField] string conversantName;
-        [SerializeField] Dialogue dialogue;
 
         public CursorType GetCursorType()
         {
@@ -17,7 +17,10 @@ namespace RPG.Dialogue
 
         public bool HandleRaycast(PlayerController callingController)
         {
-            if (dialogue == null) return false;
+            if (dialogue == null)
+            {
+                return false;
+            }
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -26,7 +29,7 @@ namespace RPG.Dialogue
             return true;
         }
 
-        public string getName()
+        public string GetName()
         {
             return conversantName;
         }
