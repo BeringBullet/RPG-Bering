@@ -18,8 +18,8 @@ namespace RPG.UI.Shops
         {
             iconField.sprite = item.getIcon();
             nameField.text = item.GetName();
-            availabilityField.text = $"{item.getAvailability()}";
-            priceField.text = $"${item.GetPrice():N2}";
+            availabilityField.text = $"{ item.getAvailability() }";
+            priceField.text = $"${ item.GetPrice() }";
         }
     }
 }

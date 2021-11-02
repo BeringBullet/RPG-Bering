@@ -7,21 +7,30 @@ using UnityEngine;
 
 namespace RPG.Shops
 {
-    public class Shop : MonoBehaviour, IRaycastable
+    public partial class Shop : MonoBehaviour, IRaycastable
     {
         [SerializeField] string shopName;
 
-        public class ShopItem
+        [SerializeField] StockItemConfig[] stockConfig;
+        [Serializable]
+        private class StockItemConfig
         {
-            InventoryItem item;
-            int availability;
-            float price;
-            int quantityInTransaction;
-        }
+            public InventoryItem item;
+            public int initialStock;
+            [Range(0,100)]
+            public float buyingDiscountPercentage;
 
+        }
         public event Action onChange;
 
-        public IEnumerable<ShopItem> GetFilteredItems() { return null; }
+        public IEnumerable<ShopItem> GetFilteredItems() 
+        {
+            foreach (StockItemConfig config in stockConfig)
+            {
+                float price = config.item.GetPrice() * (1 - config.buyingDiscountPercentage/100);
+                yield return new ShopItem(config.item, config.initialStock, price, 0);
+            }
+        }
         public void SelectFilter(ItemCategory category) {}
         public ItemCategory GetFilter() { return ItemCategory.None; }
         public void SelectMode(bool isBuying) {}
@@ -50,5 +59,7 @@ namespace RPG.Shops
             }
             return true;
         }
+
+
     }
 }
