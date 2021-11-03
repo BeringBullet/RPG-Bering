@@ -1,16 +1,17 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using GameDevTV.Saving;
 using UnityEngine;
-
 
 namespace RPG.Inventories
 {
-    public class Purse : MonoBehaviour
+    public class Purse : MonoBehaviour, ISaveable
     {
         [SerializeField] float startingBalance = 400f;
-        public event Action onChange;
+
         float balance = 0;
+
+        public event Action onChange;
+
         private void Awake()
         {
             balance = startingBalance;
@@ -24,7 +25,20 @@ namespace RPG.Inventories
         public void UpdateBalance(float amount)
         {
             balance += amount;
-            onChange?.Invoke();
+            if (onChange != null)
+            {
+                onChange();
+            }
+        }
+
+        public object CaptureState()
+        {
+            return balance;
+        }
+
+        public void RestoreState(object state)
+        {
+            balance = (float)state;
         }
     }
 }
