@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.15
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.1301055, g: 0.23020887, b: 0.3640007, a: 0.15}
+  m_IndirectSpecularColor: {r: 0.13353989, g: 0.19904634, b: 0.24953017, a: 0.15}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6771,32 +6771,37 @@ PrefabInstance:
     - target: {fileID: 8205975171699169539, guid: e01abade9aff13d4d88dda87682bb5e7,
         type: 3}
       propertyPath: stockConfig.Array.data[0].initialStock
-      value: 2
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8205975171699169539, guid: e01abade9aff13d4d88dda87682bb5e7,
         type: 3}
       propertyPath: stockConfig.Array.data[1].initialStock
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8205975171699169539, guid: e01abade9aff13d4d88dda87682bb5e7,
         type: 3}
       propertyPath: stockConfig.Array.data[2].initialStock
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8205975171699169539, guid: e01abade9aff13d4d88dda87682bb5e7,
         type: 3}
       propertyPath: stockConfig.Array.data[3].initialStock
-      value: 0
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 8205975171699169539, guid: e01abade9aff13d4d88dda87682bb5e7,
         type: 3}
       propertyPath: stockConfig.Array.data[0].buyingDiscountPercentage
-      value: 14
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 8205975171699169539, guid: e01abade9aff13d4d88dda87682bb5e7,
         type: 3}
       propertyPath: stockConfig.Array.data[1].buyingDiscountPercentage
-      value: 50
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 8205975171699169539, guid: e01abade9aff13d4d88dda87682bb5e7,
+        type: 3}
+      propertyPath: stockConfig.Array.data[2].buyingDiscountPercentage
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 8855440868402026099, guid: e01abade9aff13d4d88dda87682bb5e7,
         type: 3}
@@ -9936,7 +9941,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874861664}
-  m_LocalRotation: {x: 0.15534082, y: -0.06980496, z: 0.011004999, w: 0.9853301}
+  m_LocalRotation: {x: 0.15534082, y: -0.06980495, z: 0.011004998, w: 0.9853301}
   m_LocalPosition: {x: 2.15, y: 4.69, z: -2.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11707,6 +11712,31 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 39.014877
       objectReference: {fileID: 0}
+    - target: {fileID: 1224528721148340124, guid: 9065ec7e81ca8034a865d6fdd7906af9,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224528721148340124, guid: 9065ec7e81ca8034a865d6fdd7906af9,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224528721148340124, guid: 9065ec7e81ca8034a865d6fdd7906af9,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224528721148340124, guid: 9065ec7e81ca8034a865d6fdd7906af9,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224528721148340124, guid: 9065ec7e81ca8034a865d6fdd7906af9,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1224528721665636198, guid: 9065ec7e81ca8034a865d6fdd7906af9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13175,7 +13205,7 @@ PrefabInstance:
     - target: {fileID: 5263181309239226457, guid: 9065ec7e81ca8034a865d6fdd7906af9,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.74993896
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 5263524460118599961, guid: 9065ec7e81ca8034a865d6fdd7906af9,
         type: 3}
@@ -13185,7 +13215,7 @@ PrefabInstance:
     - target: {fileID: 5263524460118599961, guid: 9065ec7e81ca8034a865d6fdd7906af9,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -570.74976
+      value: -570.7499
       objectReference: {fileID: 0}
     - target: {fileID: 5263917500653042737, guid: 9065ec7e81ca8034a865d6fdd7906af9,
         type: 3}
