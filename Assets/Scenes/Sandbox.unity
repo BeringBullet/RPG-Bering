@@ -1060,7 +1060,7 @@ PrefabInstance:
     - target: {fileID: 2601345790002499122, guid: 4582823fb035b6c4da3c69a0456f0939,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.95957065
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 2601345790002499122, guid: 4582823fb035b6c4da3c69a0456f0939,
         type: 3}
@@ -3026,7 +3026,7 @@ GameObject:
   - component: {fileID: 526310458}
   - component: {fileID: 526310457}
   - component: {fileID: 526310456}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain_South
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4813,7 +4813,7 @@ GameObject:
   - component: {fileID: 871023142}
   - component: {fileID: 871023141}
   - component: {fileID: 871023140}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain_Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5379,17 +5379,17 @@ PrefabInstance:
     - target: {fileID: 2601345790002499122, guid: 4582823fb035b6c4da3c69a0456f0939,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8603897
+      value: 1.57
       objectReference: {fileID: 0}
     - target: {fileID: 2601345790002499122, guid: 4582823fb035b6c4da3c69a0456f0939,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5846887
+      value: 2.05
       objectReference: {fileID: 0}
     - target: {fileID: 2601345790002499122, guid: 4582823fb035b6c4da3c69a0456f0939,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.2769966
+      value: 3.03
       objectReference: {fileID: 0}
     - target: {fileID: 2601345790002499122, guid: 4582823fb035b6c4da3c69a0456f0939,
         type: 3}
@@ -6742,7 +6742,7 @@ PrefabInstance:
     - target: {fileID: 8205975171699169539, guid: e01abade9aff13d4d88dda87682bb5e7,
         type: 3}
       propertyPath: stockConfig.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8205975171699169539, guid: e01abade9aff13d4d88dda87682bb5e7,
         type: 3}
@@ -6776,6 +6776,12 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 8205975171699169539, guid: e01abade9aff13d4d88dda87682bb5e7,
         type: 3}
+      propertyPath: stockConfig.Array.data[5].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 4433948a829b1c2429c25a169a1d97e2,
+        type: 2}
+    - target: {fileID: 8205975171699169539, guid: e01abade9aff13d4d88dda87682bb5e7,
+        type: 3}
       propertyPath: stockConfig.Array.data[0].initialStock
       value: 15
       objectReference: {fileID: 0}
@@ -6801,6 +6807,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8205975171699169539, guid: e01abade9aff13d4d88dda87682bb5e7,
         type: 3}
+      propertyPath: stockConfig.Array.data[5].initialStock
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8205975171699169539, guid: e01abade9aff13d4d88dda87682bb5e7,
+        type: 3}
       propertyPath: stockConfig.Array.data[0].levelToUnlock
       value: 2
       objectReference: {fileID: 0}
@@ -6818,6 +6829,11 @@ PrefabInstance:
         type: 3}
       propertyPath: stockConfig.Array.data[4].levelToUnlock
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8205975171699169539, guid: e01abade9aff13d4d88dda87682bb5e7,
+        type: 3}
+      propertyPath: stockConfig.Array.data[5].levelToUnlock
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8205975171699169539, guid: e01abade9aff13d4d88dda87682bb5e7,
         type: 3}
@@ -9977,7 +9993,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874861664}
-  m_LocalRotation: {x: 0.15534082, y: -0.06980495, z: 0.011004998, w: 0.9853301}
+  m_LocalRotation: {x: 0.15534082, y: -0.06980496, z: 0.011005, w: 0.9853301}
   m_LocalPosition: {x: 2.15, y: 4.69, z: -2.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -13251,7 +13267,7 @@ PrefabInstance:
     - target: {fileID: 5263524460118599961, guid: 9065ec7e81ca8034a865d6fdd7906af9,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -570.7499
+      value: -570.74976
       objectReference: {fileID: 0}
     - target: {fileID: 5263917500653042737, guid: 9065ec7e81ca8034a865d6fdd7906af9,
         type: 3}
