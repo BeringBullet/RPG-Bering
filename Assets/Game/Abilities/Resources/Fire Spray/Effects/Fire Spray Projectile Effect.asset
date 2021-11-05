@@ -16,3 +16,4 @@ MonoBehaviour:
     type: 3}
   damageAmount: 30
   isRighHand: 1
+  useTargetPoint: 0
