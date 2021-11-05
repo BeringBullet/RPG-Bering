@@ -16,7 +16,13 @@ namespace RPG.Inventories
         {
             balance = startingBalance;
         }
-
+        private void Update()
+        {
+            if (Input.GetKey(KeyCode.M))
+            {
+                UpdateBalance(Time.deltaTime * 100);
+            }
+        }
         public float GetBalance()
         {
             return balance;

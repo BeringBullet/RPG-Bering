@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Abilities.Filters
+namespace RPG.Abilities.Effects
 {
     [CreateAssetMenu(fileName = "Spawn Target Prefab Effect", menuName = "Abilities/Effect/Target Prefab", order = 0)]
 
@@ -13,7 +13,7 @@ namespace RPG.Abilities.Filters
         [SerializeField] Transform prefabToSpawn;
         [SerializeField] float destroyDelay = -1f;
 
-        public override void StartEffects(AbilityData data, Action finished)
+        public override void StartEffect(AbilityData data, Action finished)
         {
             data.StartCoroutine(Effect(data, finished));
         }

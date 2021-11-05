@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Abilities.Filters
+namespace RPG.Abilities.Effects
 {
     [CreateAssetMenu(fileName = "Health Effect", menuName = "Abilities/Effect/Health", order = 0)]
 
@@ -12,7 +12,7 @@ namespace RPG.Abilities.Filters
     {
         [SerializeField] float healthChange;
   
-        public override void StartEffects(AbilityData data, Action finished)
+        public override void StartEffect(AbilityData data, Action finished)
         { 
             foreach (var item in data.GetTargets())
             {

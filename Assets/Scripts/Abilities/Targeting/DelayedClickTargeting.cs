@@ -1,7 +1,7 @@
-using RPG.Control;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System;
+using RPG.Control;
 using UnityEngine;
 
 namespace RPG.Abilities.Targeting
@@ -12,9 +12,10 @@ namespace RPG.Abilities.Targeting
         [SerializeField] Texture2D cursorTexture;
         [SerializeField] Vector2 cursorHotspot;
         [SerializeField] LayerMask layerMask;
-        [SerializeField] float ariaAffectRadius = 5f;
+        [SerializeField] float areaAffectRadius;
         [SerializeField] Transform targetingPrefab;
-        Transform targetingPrefabInstance;
+
+        Transform targetingPrefabInstance = null;
 
         public override void StartTargeting(AbilityData data, Action finished)
         {
@@ -33,8 +34,8 @@ namespace RPG.Abilities.Targeting
             {
                 targetingPrefabInstance.gameObject.SetActive(true);
             }
-            targetingPrefabInstance.localScale = new Vector3(ariaAffectRadius * 2, 1, ariaAffectRadius * 2);
-            while (true)
+            targetingPrefabInstance.localScale = new Vector3(areaAffectRadius * 2, 1, areaAffectRadius * 2);
+            while (!data.IsCancelled())
             {
                 Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
                 RaycastHit raycastHit;
@@ -42,27 +43,25 @@ namespace RPG.Abilities.Targeting
                 {
                     targetingPrefabInstance.position = raycastHit.point;
 
-
                     if (Input.GetMouseButtonDown(0))
                     {
                         // Absorb the whole mouse click
                         yield return new WaitWhile(() => Input.GetMouseButton(0));
-                        playerController.enabled = true;
-                        targetingPrefabInstance.gameObject.SetActive(false);
                         data.SetTargetedPoint(raycastHit.point);
-                        data.SetTargets(GetGameObjectInRAdios(raycastHit.point));
-                        
-                        finished();
-                        yield break;
+                        data.SetTargets(GetGameObjectsInRadius(raycastHit.point));
+                        break;
                     }
                 }
                 yield return null;
             }
+            targetingPrefabInstance.gameObject.SetActive(false);
+            playerController.enabled = true;
+            finished();
         }
 
-        private IEnumerable<GameObject> GetGameObjectInRAdios(Vector3 point)
+        private IEnumerable<GameObject> GetGameObjectsInRadius(Vector3 point)
         {
-            RaycastHit[] hits = Physics.SphereCastAll(point, ariaAffectRadius, Vector3.up, 0);
+            RaycastHit[] hits = Physics.SphereCastAll(point, areaAffectRadius, Vector3.up, 0);
             foreach (var hit in hits)
             {
                 yield return hit.collider.gameObject;

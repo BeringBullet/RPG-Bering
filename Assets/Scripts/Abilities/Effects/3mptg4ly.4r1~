@@ -1,0 +1,17 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace RPG.Abilities.Effects
+{
+    [CreateAssetMenu(fileName = "Spawn Projectile Effect", menuName = "Abilities/Effect/Spawn Projectiles", order = 0)]
+
+    public class SpawnProjectileEffect : EffectStrategy
+    {
+        public override void StartEffect(AbilityData data, Action finished)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
