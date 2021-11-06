@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 290adebd-85b9-40b2-a4e2-083ca636556c
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: You did it! You actually slew the Swamp Donkey! My eternal gratitude to you!
+  text: You did it! You actually slew the Swamp King! My eternal gratitude to you!
   children: []
   rect:
     serializedVersion: 2
@@ -86,7 +86,7 @@ MonoBehaviour:
   - 0834d9d4-ab57-4ebc-b925-dd998e6c5fa8
   rect:
     serializedVersion: 2
-    x: 530
+    x: 533
     y: 202
     width: 200
     height: 100
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 6d7c71d8-2181-40d0-8691-f1cc4507cc87
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: The terrible Swamp Donkey is terrorising the children.
+  text: The terrible Swamp King is terrorising the children.
   children:
   - 7bbf3cb6-cf9a-43ba-9a77-362b337c3ccf
   rect:
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 718cb2b7-80fe-46ae-86b6-dda961085b09
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: Slain the Swamp Donkey for us?
+  text: Slain the Swamp King for us?
   children:
   - d5f68b48-4f0d-4700-86c4-9a0e1cd70426
   rect:
