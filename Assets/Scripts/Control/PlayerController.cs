@@ -5,7 +5,7 @@ using RPG.Attributes;
 using System;
 using UnityEngine.EventSystems;
 using UnityEngine.AI;
-using GameDevTV.Inventories;
+using BeringRPG.Inventories;
 
 namespace RPG.Control
 {
@@ -42,6 +42,7 @@ namespace RPG.Control
                 SetCursor(CursorType.None);
                 return;
             }
+
             UseAbilities();
 
             if (InteractWithComponent()) return;
@@ -49,7 +50,6 @@ namespace RPG.Control
 
             SetCursor(CursorType.None);
         }
-
 
         private bool InteractWithUI()
         {
@@ -72,6 +72,7 @@ namespace RPG.Control
             }
             return false;
         }
+
         private void UseAbilities()
         {
             for (int i = 0; i < numberOfAbilities; i++)

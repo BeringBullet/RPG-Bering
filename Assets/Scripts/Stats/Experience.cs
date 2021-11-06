@@ -1,5 +1,5 @@
 using UnityEngine;
-using GameDevTV.Saving;
+using BeringRPG.Saving;
 using System;
 
 namespace RPG.Stats
@@ -10,13 +10,13 @@ namespace RPG.Stats
 
         public event Action onExperienceGained;
 
-        private void Update()
-        {
+        private void Update() {
             if (Input.GetKey(KeyCode.E))
             {
                 GainExperience(Time.deltaTime * 1000);
             }
         }
+
         public void GainExperience(float experience)
         {
             experiencePoints += experience;

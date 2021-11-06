@@ -1,17 +1,14 @@
-using RPG.Attributes;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Abilities.Effects
 {
-    [CreateAssetMenu(fileName = "Spawn Target Prefab Effect", menuName = "Abilities/Effect/Target Prefab", order = 0)]
-
+    [CreateAssetMenu(fileName = "Spawn Target Prefab Effect", menuName = "Abilities/Effects/Spawn Target Prefab", order = 0)]
     public class SpawnTargetPrefabEffect : EffectStrategy
     {
         [SerializeField] Transform prefabToSpawn;
-        [SerializeField] float destroyDelay = -1f;
+        [SerializeField] float destroyDelay = -1;
 
         public override void StartEffect(AbilityData data, Action finished)
         {

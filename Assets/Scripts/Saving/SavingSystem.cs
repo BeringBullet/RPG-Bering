@@ -7,7 +7,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GameDevTV.Saving
+namespace BeringRPG.Saving
 {
     /// <summary>
     /// This component provides the interface to the saving system. It provides
@@ -55,6 +55,17 @@ namespace GameDevTV.Saving
         public void Load(string saveFile)
         {
             RestoreState(LoadFile(saveFile));
+        }
+
+        public IEnumerable<string> ListSaves()
+        {
+            foreach (string path in Directory.EnumerateFiles(Application.persistentDataPath))
+            {
+                if (Path.GetExtension(path) == ".sav")
+                {
+                    yield return Path.GetFileNameWithoutExtension(path);
+                }
+            }
         }
 
         // PRIVATE

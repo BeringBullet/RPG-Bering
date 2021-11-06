@@ -23,7 +23,7 @@ public class AbilityData : IAction
 
     public void SetTargets(IEnumerable<GameObject> targets)
     {
-        this.targets = targets;
+        this.targets = targets; 
     }
 
     public Vector3 GetTargetedPoint()

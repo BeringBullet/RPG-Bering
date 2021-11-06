@@ -1,15 +1,15 @@
-using GameDevTV.Saving;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using BeringRPG.Saving;
+using BeringRPG.Utils;
 using UnityEngine;
 
 namespace RPG.Stats
 {
-    public class TraitStore : MonoBehaviour, IModifierProvider, ISaveable
+    public class TraitStore : MonoBehaviour, IModifierProvider, ISaveable, IPredicateEvaluator
     {
         [SerializeField] TraitBonus[] bonusConfig;
-        [Serializable]
+        [System.Serializable]
         class TraitBonus
         {
             public Trait trait;
@@ -20,26 +20,26 @@ namespace RPG.Stats
 
         Dictionary<Trait, int> assignedPoints = new Dictionary<Trait, int>();
         Dictionary<Trait, int> stagedPoints = new Dictionary<Trait, int>();
+
         Dictionary<Stat, Dictionary<Trait, float>> additiveBonusCache;
-        Dictionary<Stat, Dictionary<Trait, float>> percentagBonusCache;
+        Dictionary<Stat, Dictionary<Trait, float>> percentageBonusCache;
 
         private void Awake()
         {
             additiveBonusCache = new Dictionary<Stat, Dictionary<Trait, float>>();
-            percentagBonusCache = new Dictionary<Stat, Dictionary<Trait, float>>();
-
+            percentageBonusCache = new Dictionary<Stat, Dictionary<Trait, float>>();
             foreach (var bonus in bonusConfig)
             {
                 if (!additiveBonusCache.ContainsKey(bonus.stat))
                 {
                     additiveBonusCache[bonus.stat] = new Dictionary<Trait, float>();
                 }
-                if (!percentagBonusCache.ContainsKey(bonus.stat))
+                if (!percentageBonusCache.ContainsKey(bonus.stat))
                 {
-                    percentagBonusCache[bonus.stat] = new Dictionary<Trait, float>();
+                    percentageBonusCache[bonus.stat] = new Dictionary<Trait, float>();
                 }
                 additiveBonusCache[bonus.stat][bonus.trait] = bonus.additiveBonusPerPoint;
-                percentagBonusCache[bonus.stat][bonus.trait] = bonus.percentageBonusPerPoint;
+                percentageBonusCache[bonus.stat][bonus.trait] = bonus.percentageBonusPerPoint;
             }
         }
 
@@ -48,24 +48,20 @@ namespace RPG.Stats
             return GetPoints(trait) + GetStagedPoints(trait);
         }
 
-        public int GetStagedPoints(Trait trait)
-        {
-            return stagedPoints.ContainsKey(trait) ? stagedPoints[trait] : 0;
-        }
-
         public int GetPoints(Trait trait)
         {
             return assignedPoints.ContainsKey(trait) ? assignedPoints[trait] : 0;
         }
 
-        public int GetUnassignedPoints()
+        public int GetStagedPoints(Trait trait)
         {
-            return GetAssignablePoints() - GetTotalProposedPoints();
+            return stagedPoints.ContainsKey(trait)? stagedPoints[trait] : 0;
         }
 
         public void AssignPoints(Trait trait, int points)
         {
             if (!CanAssignPoints(trait, points)) return;
+
             stagedPoints[trait] = GetStagedPoints(trait) + points;
         }
 
@@ -76,7 +72,12 @@ namespace RPG.Stats
             return true;
         }
 
-        private int GetTotalProposedPoints()
+        public int GetUnassignedPoints()
+        {
+            return GetAssignablePoints() - GetTotalProposedPoints();
+        }
+
+        public int GetTotalProposedPoints()
         {
             int total = 0;
             foreach (int points in assignedPoints.Values)
@@ -117,14 +118,15 @@ namespace RPG.Stats
 
         public IEnumerable<float> GetPercentageModifiers(Stat stat)
         {
-            if (!percentagBonusCache.ContainsKey(stat)) yield break;
+            if (!percentageBonusCache.ContainsKey(stat)) yield break;
 
-            foreach (Trait trait in percentagBonusCache[stat].Keys)
+            foreach (Trait trait in percentageBonusCache[stat].Keys)
             {
-                float bonus = percentagBonusCache[stat][trait];
+                float bonus = percentageBonusCache[stat][trait];
                 yield return bonus * GetPoints(trait);
             }
         }
+
         public object CaptureState()
         {
             return assignedPoints;
@@ -133,6 +135,18 @@ namespace RPG.Stats
         public void RestoreState(object state)
         {
             assignedPoints = new Dictionary<Trait, int>((IDictionary<Trait, int>)state);
+        }
+
+        public bool? Evaluate(string predicate, string[] parameters)
+        {
+            if (predicate == "MinimumTrait")
+            {
+                if (Enum.TryParse<Trait>(parameters[0], out Trait trait))
+                {
+                    return GetPoints(trait) >= Int32.Parse(parameters[1]);
+                } 
+            }
+            return null;
         }
     }
 }

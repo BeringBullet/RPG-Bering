@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using GameDevTV.Core.UI.Tooltips;
+using BeringRPG.Core.UI.Tooltips;
 using RPG.Quests;
 using UnityEngine;
 

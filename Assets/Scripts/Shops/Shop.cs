@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using GameDevTV.Inventories;
-using GameDevTV.Saving;
+using BeringRPG.Inventories;
+using BeringRPG.Saving;
 using RPG.Control;
 using RPG.Inventories;
 using RPG.Stats;
@@ -15,13 +15,13 @@ namespace RPG.Shops
         [SerializeField] string shopName;
         [Range(0, 100)]
         [SerializeField] float sellingPercentage = 80f;
-        [SerializeField] float maximumBarterDiscount = 80f;
+        [SerializeField] float maximumBarterDiscount = 80;
 
         // Stock Config
-        // Item: 
-        // InventoryItem
-        // Initial Stock
-        // buyingDiscount
+            // Item: 
+                // InventoryItem
+                // Initial Stock
+                // buyingDiscount
         [SerializeField]
         StockItemConfig[] stockConfig;
 
@@ -76,8 +76,7 @@ namespace RPG.Shops
             }
         }
 
-        public void SelectFilter(ItemCategory category)
-        {
+        public void SelectFilter(ItemCategory category) {
             filter = category;
             print(category);
 
@@ -87,12 +86,12 @@ namespace RPG.Shops
             }
         }
 
-        public ItemCategory GetFilter()
-        {
+        public ItemCategory GetFilter() 
+        { 
             return filter;
         }
 
-        public void SelectMode(bool isBuying)
+        public void SelectMode(bool isBuying) 
         {
             isBuyingMode = isBuying;
             if (onChange != null)
@@ -101,13 +100,13 @@ namespace RPG.Shops
             }
         }
 
-        public bool IsBuyingMode()
-        {
-            return isBuyingMode;
+        public bool IsBuyingMode() 
+        { 
+            return isBuyingMode; 
         }
 
-        public bool CanTransact()
-        {
+        public bool CanTransact() 
+        { 
             if (IsTransactionEmpty()) return false;
             if (!HasSufficientFunds()) return false;
             if (!HasInventorySpace()) return false;
@@ -184,7 +183,7 @@ namespace RPG.Shops
         }
 
         public float TransactionTotal()
-        {
+        { 
             float total = 0;
             foreach (ShopItem item in GetAllItems())
             {
@@ -198,7 +197,7 @@ namespace RPG.Shops
             return shopName;
         }
 
-        public void AddToTransaction(InventoryItem item, int quantity)
+        public void AddToTransaction(InventoryItem item, int quantity) 
         {
             if (!transaction.ContainsKey(item))
             {
@@ -216,7 +215,7 @@ namespace RPG.Shops
             {
                 transaction[item] += quantity;
             }
-
+            
             if (transaction[item] <= 0)
             {
                 transaction.Remove(item);
@@ -391,7 +390,7 @@ namespace RPG.Shops
 
         public void RestoreState(object state)
         {
-            Dictionary<string, int> saveObject = (Dictionary<string, int>)state;
+            Dictionary<string, int> saveObject = (Dictionary<string, int>) state;
             stockSold.Clear();
             foreach (var pair in saveObject)
             {

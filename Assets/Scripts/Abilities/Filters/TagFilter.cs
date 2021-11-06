@@ -1,21 +1,20 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Abilities.Filters
 {
-    [CreateAssetMenu(fileName = "Tag Filter", menuName = "Abilities/Filter/Tag", order = 0)]
-
+    [CreateAssetMenu(fileName = "Tag Filter", menuName = "Abilities/Filters/Tag", order = 0)]
     public class TagFilter : FilterStrategy
     {
         [SerializeField] string tagToFilter = "";
+
         public override IEnumerable<GameObject> Filter(IEnumerable<GameObject> objectsToFilter)
         {
-            foreach (GameObject item in objectsToFilter)
+            foreach (var gameObject in objectsToFilter)
             {
-                if (item.tag == tagToFilter)
+                if (gameObject.CompareTag(tagToFilter))
                 {
-                    yield return item;
+                    yield return gameObject;
                 }
             }
         }

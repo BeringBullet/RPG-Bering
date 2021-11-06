@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using GameDevTV.Inventories;
+using BeringRPG.Inventories;
 using RPG.Attributes;
 using RPG.Core;
 using UnityEngine;
@@ -15,18 +15,18 @@ namespace RPG.Abilities
         [SerializeField] float cooldownTime = 0;
         [SerializeField] float manaCost = 0;
 
-        public override void Use(GameObject user)
+        public override bool Use(GameObject user)
         {
             Mana mana = user.GetComponent<Mana>();
             if (mana.GetMana() < manaCost)
             {
-                return;
+                return false;
             }
 
             CooldownStore cooldownStore = user.GetComponent<CooldownStore>();
             if (cooldownStore.GetTimeRemaining(this) > 0)
             {
-                return;
+                return false;
             }
 
             AbilityData data = new AbilityData(user);
@@ -34,10 +34,12 @@ namespace RPG.Abilities
             ActionScheduler actionScheduler = user.GetComponent<ActionScheduler>();
             actionScheduler.StartAction(data);
 
-            targetingStrategy.StartTargeting(data,
+            targetingStrategy.StartTargeting(data, 
                 () => {
                     TargetAquired(data);
                 });
+
+            return true;
         }
 
         private void TargetAquired(AbilityData data)
@@ -54,7 +56,7 @@ namespace RPG.Abilities
             {
                 data.SetTargets(filterStrategy.Filter(data.GetTargets()));
             }
-
+            
             foreach (var effect in effectStrategies)
             {
                 effect.StartEffect(data, EffectFinished);
@@ -63,7 +65,7 @@ namespace RPG.Abilities
 
         private void EffectFinished()
         {
-
+            
         }
     }
 }

@@ -19,18 +19,21 @@ namespace RPG.UI.Shops
 
         Shopper shopper = null;
         Shop currentShop = null;
+
         Color originalTotalTextColor;
 
         // Start is called before the first frame update
         void Start()
         {
             originalTotalTextColor = totalField.color;
+
             shopper = GameObject.FindGameObjectWithTag("Player").GetComponent<Shopper>();
             if (shopper == null) return;
 
             shopper.activeShopChange += ShopChanged;
             confirmButton.onClick.AddListener(ConfirmTransaction);
-            switchButton.onClick.AddListener(switchMode);
+            switchButton.onClick.AddListener(SwitchMode);
+
             ShopChanged();
         }
 
@@ -47,19 +50,22 @@ namespace RPG.UI.Shops
             {
                 button.SetShop(currentShop);
             }
+
             if (currentShop == null) return;
             shopName.text = currentShop.GetShopName();
 
             currentShop.onChange += RefreshUI;
+
             RefreshUI();
         }
 
         private void RefreshUI()
         {
-            foreach (Transform item in listRoot)
+            foreach (Transform child in listRoot)
             {
-                Destroy(item.gameObject);
+                Destroy(child.gameObject);
             }
+
             foreach (ShopItem item in currentShop.GetFilteredItems())
             {
                 RowUI row = Instantiate<RowUI>(rowPrefab, listRoot);
@@ -71,10 +77,17 @@ namespace RPG.UI.Shops
             confirmButton.interactable = currentShop.CanTransact();
             TextMeshProUGUI switchText = switchButton.GetComponentInChildren<TextMeshProUGUI>();
             TextMeshProUGUI confirmText = confirmButton.GetComponentInChildren<TextMeshProUGUI>();
+            if (currentShop.IsBuyingMode())
+            {
+                switchText.text = "Switch To Selling";
+                confirmText.text = "Buy";
+            }
+            else
+            {
+                switchText.text = "Switch To Buying";
+                confirmText.text = "Sell";
+            }
 
-            switchText.text = currentShop.IsBuyingMode() ? "Switch To Selling" : "Switch To Buying";
-            confirmText.text = currentShop.IsBuyingMode() ? "Buy" : "Sell";
-            
             foreach (FilterButtonUI button in GetComponentsInChildren<FilterButtonUI>())
             {
                 button.RefreshUI();
@@ -91,10 +104,9 @@ namespace RPG.UI.Shops
             currentShop.ConfirmTransaction();
         }
 
-        public void switchMode()
+        public void SwitchMode()
         {
             currentShop.SelectMode(!currentShop.IsBuyingMode());
-
         }
     }
 }

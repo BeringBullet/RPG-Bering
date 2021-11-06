@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using RPG.Attributes;
-using GameDevTV.Inventories;
+using BeringRPG.Inventories;
 using RPG.Stats;
 using System.Collections.Generic;
 

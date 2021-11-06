@@ -8,4 +8,5 @@ namespace RPG.Abilities
     {
         public abstract void StartEffect(AbilityData data, Action finished);
     }
+
 }

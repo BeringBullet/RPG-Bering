@@ -1,10 +1,10 @@
 using System;
-using GameDevTV.Saving;
+using BeringRPG.Inventories;
+using BeringRPG.Saving;
 using UnityEngine;
 
-namespace RPG.Inventories
-{
-    public class Purse : MonoBehaviour, ISaveable
+namespace RPG.Inventories {
+    public class Purse : MonoBehaviour, ISaveable, IItemStore
     {
         [SerializeField] float startingBalance = 400f;
 
@@ -12,17 +12,10 @@ namespace RPG.Inventories
 
         public event Action onChange;
 
-        private void Awake()
-        {
+        private void Awake() {
             balance = startingBalance;
         }
-        private void Update()
-        {
-            if (Input.GetKey(KeyCode.M))
-            {
-                UpdateBalance(Time.deltaTime * 100);
-            }
-        }
+
         public float GetBalance()
         {
             return balance;
@@ -45,6 +38,16 @@ namespace RPG.Inventories
         public void RestoreState(object state)
         {
             balance = (float)state;
+        }
+
+        public int AddItems(InventoryItem item, int number)
+        {
+            if (item is CurrencyItem)
+            {
+                UpdateBalance(item.GetPrice() * number);
+                return number;
+            }
+            return 0;
         }
     }
 }

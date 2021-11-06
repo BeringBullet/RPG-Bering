@@ -34,7 +34,7 @@ namespace RPG.Abilities.Targeting
             {
                 targetingPrefabInstance.gameObject.SetActive(true);
             }
-            targetingPrefabInstance.localScale = new Vector3(areaAffectRadius * 2, 1, areaAffectRadius * 2);
+            targetingPrefabInstance.localScale = new Vector3(areaAffectRadius*2, 1, areaAffectRadius*2);
             while (!data.IsCancelled())
             {
                 Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);

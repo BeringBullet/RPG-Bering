@@ -37,6 +37,7 @@ namespace RPG.Combat
         {
             SetTarget(instigator, damage, target);
         }
+
         public void SetTarget(Vector3 targetPoint, GameObject instigator, float damage)
         {
             SetTarget(instigator, damage, null, targetPoint);
@@ -54,8 +55,10 @@ namespace RPG.Combat
 
         private Vector3 GetAimLocation()
         {
-            if (target == null) return targetPoint;
-
+            if (target == null)
+            {
+                return targetPoint;
+            }
             CapsuleCollider targetCapsule = target.GetComponent<CapsuleCollider>();
             if (targetCapsule == null)
             {
@@ -67,9 +70,9 @@ namespace RPG.Combat
         private void OnTriggerEnter(Collider other)
         {
             Health health = other.GetComponent<Health>();
-            if (other.gameObject == instigator) return;
             if (target != null && health != target) return;
             if (health == null || health.IsDead()) return;
+            if (other.gameObject == instigator) return;
             health.TakeDamage(instigator, damage);
 
             speed = 0;

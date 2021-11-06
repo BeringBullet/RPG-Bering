@@ -1,8 +1,6 @@
-using GameDevTV.Saving;
-using GameDevTV.Utils;
+using BeringRPG.Saving;
+using BeringRPG.Utils;
 using RPG.Stats;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Attributes
@@ -11,18 +9,21 @@ namespace RPG.Attributes
     {
         LazyValue<float> mana;
 
-        private void Awake()
-        {
+        private void Awake() {
             mana = new LazyValue<float>(GetMaxMana);
         }
 
-        private void Update()
-        {
+        private void Update() {
             if (mana.value < GetMaxMana())
             {
-                mana.value += Mathf.Clamp(GetRegenRate() * Time.deltaTime, 0, GetMaxMana());
+                mana.value += GetRegenRate() * Time.deltaTime;
+                if (mana.value > GetMaxMana())
+                {
+                    mana.value = GetMaxMana();
+                }
             }
         }
+
         public float GetMana()
         {
             return mana.value;
@@ -36,13 +37,14 @@ namespace RPG.Attributes
         public float GetRegenRate()
         {
             return GetComponent<BaseStats>().GetStat(Stat.ManaRegenRate);
-
         }
 
         public bool UseMana(float manaToUse)
         {
-            if (manaToUse > mana.value) return false;
-
+            if (manaToUse > mana.value)
+            {
+                return false;
+            }
             mana.value -= manaToUse;
             return true;
         }
@@ -54,7 +56,7 @@ namespace RPG.Attributes
 
         public void RestoreState(object state)
         {
-            mana.value = (float)state;
+            mana.value = (float) state;
         }
     }
 }

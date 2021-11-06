@@ -1,5 +1,5 @@
 ﻿using RPG.Core;
-using GameDevTV.Saving;
+using BeringRPG.Saving;
 using UnityEngine;
 using UnityEngine.AI;
 using RPG.Attributes;
@@ -24,7 +24,7 @@ namespace RPG.Movement
         {
             navMeshAgent.enabled = !health.IsDead();
 
-            UpdateAnimator();
+                UpdateAnimator();
         }
 
         public void StartMoveAction(Vector3 destination, float speedFraction)

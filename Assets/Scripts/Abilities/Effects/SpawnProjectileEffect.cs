@@ -1,44 +1,41 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using RPG.Combat;
 using RPG.Attributes;
+using RPG.Combat;
+using UnityEngine;
 
 namespace RPG.Abilities.Effects
 {
-    [CreateAssetMenu(fileName = "Spawn Projectile Effect", menuName = "Abilities/Effect/Spawn Projectiles", order = 0)]
-
+    [CreateAssetMenu(fileName = "Spawn Projectile Effect", menuName = "Abilities/Effects/Spawn Projectile", order = 0)]
     public class SpawnProjectileEffect : EffectStrategy
     {
         [SerializeField] Projectile projectileToSpawn;
-        [SerializeField] float damageAmount;
-        [SerializeField] bool isRighHand = true;
+        [SerializeField] float damage;
+        [SerializeField] bool isRightHand = true;
         [SerializeField] bool useTargetPoint = true;
 
         public override void StartEffect(AbilityData data, Action finished)
         {
             Fighter fighter = data.GetUser().GetComponent<Fighter>();
-            Vector3 spawnPosition = fighter.GetHandTransform(isRighHand).position;
+            Vector3 spawnPosition = fighter.GetHandTransform(isRightHand).position;
             if (useTargetPoint)
             {
-                SpawnProjectilesForTargetPoint(data, spawnPosition);
+                SpawnProjectileForTargetPoint(data, spawnPosition);
             }
             else
             {
-                SpawnProjectilesForTarget(data, spawnPosition);
+                SpawnProjectilesForTargets(data, spawnPosition);
             }
             finished();
         }
 
-        private void SpawnProjectilesForTargetPoint(AbilityData data, Vector3 spawnPosition)
+        private void SpawnProjectileForTargetPoint(AbilityData data, Vector3 spawnPosition)
         {
             Projectile projectile = Instantiate(projectileToSpawn);
             projectile.transform.position = spawnPosition;
-            projectile.SetTarget(data.GetTargetedPoint(), data.GetUser(), damageAmount);
+            projectile.SetTarget(data.GetTargetedPoint(), data.GetUser(), damage);
         }
 
-        private void SpawnProjectilesForTarget(AbilityData data, Vector3 spawnPosition)
+        private void SpawnProjectilesForTargets(AbilityData data, Vector3 spawnPosition)
         {
             foreach (var target in data.GetTargets())
             {
@@ -47,7 +44,7 @@ namespace RPG.Abilities.Effects
                 {
                     Projectile projectile = Instantiate(projectileToSpawn);
                     projectile.transform.position = spawnPosition;
-                    projectile.SetTarget(health, data.GetUser(), damageAmount);
+                    projectile.SetTarget(health, data.GetUser(), damage);
                 }
             }
         }

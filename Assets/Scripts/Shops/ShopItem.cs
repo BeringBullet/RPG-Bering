@@ -1,6 +1,5 @@
-﻿using GameDevTV.Inventories;
 using System;
-using TMPro;
+using BeringRPG.Inventories;
 using UnityEngine;
 
 namespace RPG.Shops
@@ -12,11 +11,7 @@ namespace RPG.Shops
         float price;
         int quantityInTransaction;
 
-        public ShopItem(
-            InventoryItem item, 
-            int availability,
-            float price,
-            int quantityInTransaction)
+        public ShopItem(InventoryItem item, int availability, float price, int quantityInTransaction)
         {
             this.item = item;
             this.availability = availability;
@@ -24,14 +19,14 @@ namespace RPG.Shops
             this.quantityInTransaction = quantityInTransaction;
         }
 
-        public int getAvailability()
-        {
-            return availability;
-        }
-
-        public Sprite getIcon()
+        public Sprite GetIcon()
         {
             return item.GetIcon();
+        }
+
+        public int GetAvailability()
+        {
+            return availability;
         }
 
         public string GetName()
@@ -44,14 +39,14 @@ namespace RPG.Shops
             return price;
         }
 
-        public int GetQuantityInTransaction()
-        {
-            return quantityInTransaction;
-        }
-
         public InventoryItem GetInventoryItem()
         {
             return item;
+        }
+
+        public int GetQuantityInTransaction()
+        {
+            return quantityInTransaction;
         }
     }
 }
