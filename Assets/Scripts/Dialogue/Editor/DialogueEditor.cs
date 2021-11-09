@@ -160,7 +160,8 @@ namespace RPG.Dialogue.Editor
         private void DrawNode(DialogueNode node)
         {
             EditorStyles.textArea.wordWrap = true;
-           
+            EditorStyles.textField.wordWrap = true;
+
             GUIStyle style = nodeStyle;
             if (node.IsPlayerSpeaking())
             {
