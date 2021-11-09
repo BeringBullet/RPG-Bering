@@ -159,6 +159,8 @@ namespace RPG.Dialogue.Editor
 
         private void DrawNode(DialogueNode node)
         {
+            EditorStyles.textArea.wordWrap = true;
+           
             GUIStyle style = nodeStyle;
             if (node.IsPlayerSpeaking())
             {
@@ -167,7 +169,7 @@ namespace RPG.Dialogue.Editor
             GUILayout.BeginArea(node.GetRect(), style);
             EditorGUI.BeginChangeCheck();
 
-            node.SetText(EditorGUILayout.TextField(node.GetText()));
+            node.SetText(EditorGUILayout.TextArea(node.GetText(), GUILayout.MaxHeight(75)));
 
             GUILayout.BeginHorizontal();
 

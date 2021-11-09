@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 307d87d27f907ab409224ea823bb2f13, type: 3}
-  m_Name: Swamp Donkey
+  m_Name: Swamp King
   m_EditorClassIdentifier: 
   objectives:
   - reference: train
-    description: Train up
+    description: Train up (Strength of 4)
     usesCondition: 1
     completionCondition:
       and:
@@ -25,7 +25,7 @@ MonoBehaviour:
           - 4
           negate: 0
   - reference: equip
-    description: Get equiped
+    description: Get equiped (Epic sword)
     usesCondition: 1
     completionCondition:
       and:

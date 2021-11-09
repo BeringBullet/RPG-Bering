@@ -16,14 +16,7 @@ namespace RPG.Shops
         [Range(0, 100)]
         [SerializeField] float sellingPercentage = 80f;
         [SerializeField] float maximumBarterDiscount = 80;
-
-        // Stock Config
-            // Item: 
-                // InventoryItem
-                // Initial Stock
-                // buyingDiscount
-        [SerializeField]
-        StockItemConfig[] stockConfig;
+        [SerializeField] StockItemConfig[] stockConfig;
 
         [System.Serializable]
         class StockItemConfig

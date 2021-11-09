@@ -1,10 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Attributes
 {
-    public class HealthBar : MonoBehaviour
+    public class Healthbar : MonoBehaviour
     {
         [SerializeField] Health healthComponent = null;
         [SerializeField] RectTransform foreground = null;
@@ -14,7 +14,7 @@ namespace RPG.Attributes
         void Update()
         {
             if (Mathf.Approximately(healthComponent.GetFraction(), 0)
-            ||  Mathf.Approximately(healthComponent.GetFraction(), 1))
+           || Mathf.Approximately(healthComponent.GetFraction(), 1))
             {
                 rootCanvas.enabled = false;
                 return;

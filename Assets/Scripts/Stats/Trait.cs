@@ -6,6 +6,7 @@ namespace RPG.Stats
         Dexterity,
         Constitution,
         Intelligence,
+        Wisdom,
         Charisma
     }
 }

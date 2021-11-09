@@ -17,8 +17,8 @@ MonoBehaviour:
   children: []
   rect:
     serializedVersion: 2
-    x: 264
-    y: 299
+    x: 350
+    y: 334
     width: 200
     height: 100
   onEnterAction: 
@@ -50,8 +50,8 @@ MonoBehaviour:
   - 1a9c1b80-e600-47c2-9f70-500b5ea76736
   rect:
     serializedVersion: 2
-    x: 10
-    y: 85
+    x: 43
+    y: 69
     width: 200
     height: 100
   onEnterAction: 
@@ -89,12 +89,12 @@ MonoBehaviour:
   m_Name: f342e37d-775a-42c2-8415-bfea9271e9c3
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: I think a sword might help.
+  text: I think a sword might help. This Sword needs a strength of 4.
   children: []
   rect:
     serializedVersion: 2
-    x: 261
-    y: 182
+    x: 377
+    y: 178
     width: 200
     height: 100
   onEnterAction: 
@@ -125,12 +125,12 @@ MonoBehaviour:
   m_Name: 73f0932f-2f6b-4717-b0ed-ff25b9c1a11c
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: You seem too weak to tackle him!
+  text: You seem too weak to tackle him! Build up your Strength!
   children: []
   rect:
     serializedVersion: 2
-    x: 260
-    y: 70
+    x: 356
+    y: 37
     width: 200
     height: 100
   onEnterAction: 
