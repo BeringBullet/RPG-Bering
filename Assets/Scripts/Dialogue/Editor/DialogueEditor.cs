@@ -66,7 +66,7 @@ namespace RPG.Dialogue.Editor
             playerNodeStyle.padding = new RectOffset(20, 20, 20, 20);
             playerNodeStyle.border = new RectOffset(12, 12, 12, 12);
         }
-
+        
         private void OnSelectionChanged()
         {
             Dialogue newDialogue = Selection.activeObject as Dialogue;
@@ -78,6 +78,13 @@ namespace RPG.Dialogue.Editor
         }
 
         private void OnGUI() {
+
+            Dialogue newDialogue = Selection.activeObject as Dialogue;
+            if (newDialogue != null)
+            {
+                selectedDialogue = newDialogue;
+            }
+
             if (selectedDialogue == null)
             {
                 EditorGUILayout.LabelField("No Dialogue Selected.");
