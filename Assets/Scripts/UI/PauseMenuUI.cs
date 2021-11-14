@@ -7,7 +7,7 @@ namespace RPG.UI
     public class PauseMenuUI : MonoBehaviour
     {
         PlayerController playerController;
-
+        float gameTime = 1;
         private void Start() {
             playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         }
@@ -21,11 +21,21 @@ namespace RPG.UI
 
         private void OnDisable()
         {
+            Debug.Log(gameTime);
             if (playerController == null) return;
-            Time.timeScale = 1;
+            Time.timeScale = gameTime;
             playerController.enabled = true;
         }
 
+        public void SetFastGame()
+        {
+            gameTime = 3;
+        }
+
+        public void SetNormalSpeed()
+        {
+            gameTime = 1;
+        }
         public void Save()
         {
             SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();

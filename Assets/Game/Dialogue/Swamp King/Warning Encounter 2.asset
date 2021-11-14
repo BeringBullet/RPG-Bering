@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
   text: You will need better equipment to fight them!
-  children: []
+  children:
+  - 6f0271f5-e9cd-4bec-be50-4eae337ace25
   rect:
     serializedVersion: 2
-    x: 335
+    x: 341
     y: 52
     width: 200
     height: 100
@@ -48,11 +49,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
   text: Go beat them up for me!
-  children: []
+  children:
+  - 19ae2165-5c5d-45af-899c-ba7a80221a65
   rect:
     serializedVersion: 2
-    x: 314
-    y: 175
+    x: 343
+    y: 177
     width: 200
     height: 100
   onEnterAction: 
@@ -105,8 +107,59 @@ MonoBehaviour:
   - 81c1c598-ac5f-4159-b8e5-da6a205629bc
   rect:
     serializedVersion: 2
-    x: 26
-    y: 48
+    x: 40
+    y: 47
+    width: 200
+    height: 200
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &2268507968727822716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d682c531190610744a9a5e8627450547, type: 3}
+  m_Name: 19ae2165-5c5d-45af-899c-ba7a80221a65
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: 
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 908
+    y: 142
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &5951356026921682264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d682c531190610744a9a5e8627450547, type: 3}
+  m_Name: 6f0271f5-e9cd-4bec-be50-4eae337ace25
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: 
+  children:
+  - 19ae2165-5c5d-45af-899c-ba7a80221a65
+  rect:
+    serializedVersion: 2
+    x: 603
+    y: 28
     width: 200
     height: 100
   onEnterAction: 

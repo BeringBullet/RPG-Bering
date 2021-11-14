@@ -17,8 +17,8 @@ MonoBehaviour:
   children: []
   rect:
     serializedVersion: 2
-    x: 273
-    y: 316
+    x: 264
+    y: 333
     width: 200
     height: 100
   onEnterAction: 
@@ -55,8 +55,8 @@ MonoBehaviour:
   - f9708dbb-b508-4118-b3a1-c147f2a71b13
   rect:
     serializedVersion: 2
-    x: 273
-    y: 60
+    x: 249
+    y: 24
     width: 200
     height: 100
   onEnterAction: 
@@ -191,8 +191,8 @@ MonoBehaviour:
   - d5f68b48-4f0d-4700-86c4-9a0e1cd70426
   rect:
     serializedVersion: 2
-    x: 266
-    y: 189
+    x: 260
+    y: 166
     width: 200
     height: 100
   onEnterAction: 
